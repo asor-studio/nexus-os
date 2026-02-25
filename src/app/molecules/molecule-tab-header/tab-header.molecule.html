@@ -1,0 +1,14 @@
+<div class="tab-header-container">
+	<div class="tabs-list">
+		@for (tab of tabs; track tab.id) {
+			<button
+				class="tab-item"
+				[class.is-active]="tab.id === activeTabId"
+				(click)="onTabClick(tab.id)"
+			>
+				<span class="tab-label">{{ tab.label | translate }}</span>
+				<div class="active-indicator" *ngIf="tab.id === activeTabId"></div>
+			</button>
+		}
+	</div>
+</div>

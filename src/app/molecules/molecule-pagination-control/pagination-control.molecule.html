@@ -1,0 +1,15 @@
+<div class="pagination-container">
+	<button class="nav-btn" [disabled]="currentPage === 1" (click)="onPrev()">
+		<lucide-icon [size]="16" name="chevron-left"></lucide-icon>
+	</button>
+
+	<div class="page-indicator">
+		<span class="current">{{ currentPage }}</span>
+		<span class="separator">/</span>
+		<span class="total">{{ totalPages }}</span>
+	</div>
+
+	<button class="nav-btn" [disabled]="currentPage === totalPages" (click)="onNext()">
+		<lucide-icon [size]="16" name="chevron-right"></lucide-icon>
+	</button>
+</div>

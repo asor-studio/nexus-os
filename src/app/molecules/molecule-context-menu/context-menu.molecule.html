@@ -1,0 +1,21 @@
+<div
+	class="context-menu-wrapper"
+	[style.left.px]="x"
+	[style.top.px]="y"
+	(click)="$event.stopPropagation()"
+>
+	<div class="menu-container">
+		@for (item of items; track item.id) {
+			@if (item.divider) {
+				<div class="menu-divider"></div>
+			} @else {
+				<div class="menu-item" [class.disabled]="item.disabled" (click)="onItemClick(item)">
+					<div class="item-icon" *ngIf="item.icon">
+						<lucide-icon [name]="item.icon"></lucide-icon>
+					</div>
+					<span class="item-label">{{ item.label | translate }}</span>
+				</div>
+			}
+		}
+	</div>
+</div>

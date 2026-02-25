@@ -1,0 +1,63 @@
+@use 'sass:color';
+@use '../../_variables' as *;
+
+:host {
+	display: block;
+	width: 100%;
+}
+
+.toggle-switch-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 16px;
+	@include glass-panel;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: $ease-holographic;
+
+	&:hover {
+		background-color: rgba(var(--nexus-border-rgb), 0.05);
+	}
+
+	&.is-checked {
+		.toggle-track {
+			background-color: rgba(var(--nexus-accent-primary-rgb), 0.3);
+			border-color: rgba(var(--nexus-accent-primary-rgb), 0.5);
+		}
+
+		.toggle-thumb {
+			transform: translateX(20px);
+			background-color: $accent-primary;
+			box-shadow: 0 0 10px rgba(var(--nexus-accent-primary-rgb), 0.6);
+		}
+	}
+}
+
+.toggle-label {
+	font-size: 0.85rem;
+	font-weight: $font-weight-medium;
+	color: rgba(var(--nexus-border-rgb), 0.9);
+}
+
+.toggle-track {
+	width: 44px;
+	height: 24px;
+	background-color: rgba(var(--nexus-border-rgb), 0.1);
+	border: 1px solid rgba(var(--nexus-border-rgb), 0.1);
+	border-radius: 6px;
+	position: relative;
+	transition: $ease-holographic;
+}
+
+.toggle-thumb {
+	width: 18px;
+	height: 18px;
+	background-color: $font-primary-color;
+	border-radius: 50%;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	transition: $ease-holographic;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

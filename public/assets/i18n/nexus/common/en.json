@@ -1,0 +1,21 @@
+{
+    "COMMON.SEARCH": "Type to search...",
+    "COMMON.STAT": "System Stat",
+    "COMMON.APPLICATION": "Application",
+    "COMMON.LOADING": "Loading...",
+    "COMMON.ERROR_GENERIC": "Something went wrong",
+    "COMMON.ACTIVITIES": "Activities",
+    "COMMON.SETTINGS": "Settings",
+    "COMMON.POWER_OFF": "Power Off",
+    "COMMON.WIFI": "Wi-Fi",
+    "COMMON.BLUETOOTH": "Bluetooth",
+    "COMMON.DND": "Do Not Disturb",
+    "COMMON.AIRPLANE": "Airplane Mode",
+    "STATUS.ONLINE": "Online",
+    "STATUS.OFFLINE": "Offline",
+    "STATUS.DND": "Do Not Disturb",
+    "STATUS.AWAY": "Away",
+    "CONTEXT.REFRESH": "Refresh",
+    "CONTEXT.CHANGE_WALLPAPER": "Change Wallpaper",
+    "CONTEXT.SYSTEM_SETTINGS": "System Settings"
+}

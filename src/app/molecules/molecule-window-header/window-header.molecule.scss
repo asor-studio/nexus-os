@@ -1,0 +1,64 @@
+@use '../../_variables' as *;
+
+.window-header {
+	height: 32px;
+	padding: 0 12px;
+	display: flex;
+	align-items: center;
+	background: $bg-surface-high;
+	backdrop-filter: blur(20px);
+	border-bottom: 1px solid $bg-white-low;
+	user-select: none;
+	border-radius: 6px 6px 0 0;
+
+	.window-title {
+		flex: 1;
+		text-align: center;
+		font-size: 0.8rem;
+		font-weight: $font-weight-bold;
+		color: $font-primary;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		@include text-uppercase-tracking;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		pointer-events: none;
+	}
+
+	.actions-area {
+		display: flex;
+		gap: 8px;
+		margin-left: auto;
+		z-index: 10;
+
+		.btn {
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			border: none;
+			background: $bg-white-low;
+			color: $font-secondary;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: $ease-holographic;
+
+			&:hover {
+				background: $bg-white-high;
+				color: $font-primary;
+				transform: scale(1.1);
+			}
+
+			&.btn-close {
+				&:hover {
+					background: $color-error;
+					box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+				}
+			}
+		}
+	}
+}

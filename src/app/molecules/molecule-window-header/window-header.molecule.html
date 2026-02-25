@@ -1,0 +1,16 @@
+<div class="window-header">
+	<div class="title-area">
+		<span class="window-title">{{ title || 'COMMON.APPLICATION' | translate }}</span>
+	</div>
+	<div class="actions-area">
+		<button class="btn btn-minimize" (click)="minimize.emit()">
+			<lucide-icon [size]="14" name="minus"></lucide-icon>
+		</button>
+		<button class="btn btn-maximize" (click)="maximize.emit()">
+			<lucide-icon [size]="12" name="square"></lucide-icon>
+		</button>
+		<button class="btn btn-close" (click)="close.emit()">
+			<lucide-icon [size]="14" name="x"></lucide-icon>
+		</button>
+	</div>
+</div>

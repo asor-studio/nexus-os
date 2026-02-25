@@ -1,0 +1,71 @@
+@use '../../_variables' as *;
+
+.context-menu-wrapper {
+	position: fixed;
+	z-index: 3000;
+	pointer-events: auto;
+	animation: menu-pop-in 0.2s $ease-holographic;
+}
+
+.menu-container {
+	@include glass-panel;
+	border-radius: 12px;
+	padding: 6px;
+	min-width: 180px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.menu-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 12px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: $ease-holographic;
+	color: rgba(var(--nexus-border-rgb), 0.8);
+
+	&:hover:not(.disabled) {
+		background: rgba(var(--nexus-border-rgb), 0.1);
+		color: $font-primary-color;
+	}
+
+	&.disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+
+	.item-icon {
+		display: flex;
+		align-items: center;
+		color: rgba(var(--nexus-border-rgb), 0.5);
+
+		lucide-icon {
+			width: 14px;
+			height: 14px;
+		}
+	}
+
+	.item-label {
+		font-size: 0.85rem;
+		font-weight: $font-weight-medium;
+	}
+}
+
+.menu-divider {
+	height: 1px;
+	background: rgba(var(--nexus-border-rgb), 0.08);
+	margin: 6px 4px;
+}
+
+@keyframes menu-pop-in {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

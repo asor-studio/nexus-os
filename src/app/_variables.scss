@@ -1,0 +1,136 @@
+@use 'sass:color';
+
+:root {
+	// --- Base Colors (Dark Theme Default - iOS Style) ---
+	--nexus-bg-rgb: 0, 0, 0; // Pure black for OLED
+	--nexus-surface-rgb: 28, 28, 30; // Elevated iOS gray
+	--nexus-text-rgb: 255, 255, 255;
+	--nexus-accent-primary-rgb: 10, 132, 255; // iOS Dark System Blue (#0a84ff)
+	--nexus-accent-secondary-rgb: 191, 90, 242; // iOS Dark System Violet (#bf5af2)
+	--nexus-error-rgb: 255, 69, 58; // iOS Dark Red (#ff453a)
+	--nexus-warning-rgb: 255, 159, 10; // iOS Dark Orange (#ff9f0a)
+
+	--nexus-font-main-rgb: 255, 255, 255;
+	--nexus-font-sec-rgb: 235, 235, 245; // iOS secondary light
+	--nexus-border-rgb: 255, 255, 255;
+	--nexus-border-opacity: 0.15;
+}
+
+.nexus-container.light {
+	--nexus-bg-rgb: 247, 245, 239; // Soft warm cream/sepia background
+	--nexus-surface-rgb: 252, 250, 244; // Slightly lighter cream for cards/windows
+	--nexus-text-rgb: 61, 56, 47; // Dark warm brown/gray for text
+	--nexus-accent-primary-rgb: 56, 114, 186; // Muted classical blue
+	--nexus-accent-secondary-rgb: 153, 91, 149; // Muted mauve/purple
+
+	--nexus-font-main-rgb: 61, 56, 47;
+	--nexus-font-sec-rgb: 115, 107, 94; // Lighter warm brown for secondary text
+	--nexus-border-rgb: 212, 203, 188; // Warm beige for borders
+	--nexus-border-opacity: 0.4;
+}
+
+.nexus-container.dark {
+	--nexus-bg-rgb: 0, 0, 0;
+	--nexus-surface-rgb: 28, 28, 30;
+	--nexus-text-rgb: 255, 255, 255;
+	--nexus-accent-primary-rgb: 10, 132, 255;
+	--nexus-accent-secondary-rgb: 191, 90, 242;
+
+	--nexus-font-main-rgb: 255, 255, 255;
+	--nexus-font-sec-rgb: 235, 235, 245;
+	--nexus-border-rgb: 255, 255, 255;
+	--nexus-border-opacity: 0.15;
+}
+
+.nexus-container.holographic {
+	--nexus-bg-rgb: 15, 15, 25;
+	--nexus-surface-rgb: 20, 20, 35; // added for glass effects
+	--nexus-text-rgb: 255, 255, 255; // added for text contrast
+	--nexus-accent-primary-rgb: 0, 210, 255; // Vibrant Cyan (#00d2ff)
+	--nexus-accent-secondary-rgb: 255, 0, 122; // Vibrant Pink (#ff007a)
+
+	--nexus-font-main-rgb: 255, 255, 255;
+	--nexus-font-sec-rgb: 200, 200, 255; // bluish tint
+	--nexus-border-rgb: 0, 210, 255; // use cyan for borders
+	--nexus-border-opacity: 0.3; // increase border opacity slightly to be more vibrant
+
+	background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.25) 0%, #020617 100%);
+}
+
+// --- SCSS Variable Mapping (Dynamic) ---
+
+// Base hex color mappings for convenience
+// Nexus OS Palette
+$bg-slate-950: rgb(var(--nexus-bg-rgb));
+$adwaita-surface-dark: rgb(var(--nexus-surface-rgb));
+$adwaita-border-dark: rgba(var(--nexus-border-rgb), var(--nexus-border-opacity));
+$adwaita-text: rgb(var(--nexus-text-rgb));
+$bg-slate-900: rgb(var(--nexus-bg-rgb));
+
+$accent-primary: rgb(var(--nexus-accent-primary-rgb));
+$accent-secondary: rgb(var(--nexus-accent-secondary-rgb));
+$color-error: rgb(var(--nexus-error-rgb, 255, 69, 58));
+$color-warning: rgb(var(--nexus-warning-rgb, 255, 159, 10));
+
+// Font Colors
+$font-primary-color: rgb(var(--nexus-font-main-rgb));
+$font-secondary-color: rgba(var(--nexus-font-sec-rgb), 0.6); // use alpha on sec
+$font-muted: rgba(var(--nexus-font-sec-rgb), 0.45);
+$font-disabled: rgba(var(--nexus-font-sec-rgb), 0.25);
+
+$font-primary-rgb: var(--nexus-font-main-rgb);
+$font-secondary-rgb: var(--nexus-font-sec-rgb);
+
+// Background Colors
+$bg-surface-low: rgba(var(--nexus-surface-rgb), 0.35);
+$bg-surface-medium: rgba(var(--nexus-surface-rgb), 0.6);
+$bg-surface-high: rgba(var(--nexus-surface-rgb), 0.85);
+
+// overlay base (used to be bg-white-*)
+$bg-overlay-low: rgba(var(--nexus-border-rgb), 0.05);
+$bg-overlay-medium: rgba(var(--nexus-border-rgb), 0.1);
+$bg-overlay-high: rgba(var(--nexus-border-rgb), 0.2);
+
+// Aliases for retro-compatibility locally if used
+$bg-white-low: $bg-overlay-low;
+$bg-white-medium: $bg-overlay-medium;
+$bg-white-high: $bg-overlay-high;
+
+// Border Colors
+$border-subtle: rgba(var(--nexus-border-rgb), var(--nexus-border-opacity));
+$border-medium: rgba(var(--nexus-border-rgb), 0.2);
+$border-strong: rgba(var(--nexus-border-rgb), 0.4);
+
+$color-error-bg: rgba(var(--nexus-error-rgb, 255, 69, 58), 0.15);
+
+// Typography
+$font-primary: 'Inter', 'Geist Sans', system-ui, sans-serif;
+$font-secondary: 'Outfit', 'Inter', system-ui, sans-serif;
+$font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+
+@mixin glass-panel {
+	background-color: rgba(var(--nexus-surface-rgb), 0.55);
+	backdrop-filter: blur(40px) saturate(200%);
+	-webkit-backdrop-filter: blur(40px) saturate(200%);
+	border: 1px solid $border-subtle;
+	box-shadow:
+		0 10px 40px -10px rgba(0, 0, 0, 0.3),
+		inset 0 1px 0 0 rgba(var(--nexus-border-rgb), 0.1);
+}
+
+@mixin text-uppercase-tracking {
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-weight: 600;
+}
+
+$ease-holographic: cubic-bezier(0.16, 1, 0.3, 1);

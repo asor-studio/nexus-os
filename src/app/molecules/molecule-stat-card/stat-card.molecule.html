@@ -1,0 +1,9 @@
+<div class="stat-card">
+	<div class="stat-header">
+		<span class="label">{{ label | translate }}</span>
+		<span class="value">{{ value }}{{ unit }}</span>
+	</div>
+	<div class="progress-container">
+		<div class="progress-bar" [style.width.%]="progress"></div>
+	</div>
+</div>

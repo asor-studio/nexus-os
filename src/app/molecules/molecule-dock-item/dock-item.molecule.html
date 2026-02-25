@@ -1,0 +1,18 @@
+<div
+	class="nx-dock-item"
+	[class.is-open]="isOpen"
+	[class.is-focused]="isFocused"
+	(click)="onClick()"
+	(mouseenter)="onMouseEnter()"
+	(mouseleave)="onMouseLeave()"
+>
+	<div class="dock-icon-wrapper">
+		<lucide-icon [name]="iconName" [size]="28"></lucide-icon>
+	</div>
+
+	<div class="dock-indicator" *ngIf="isOpen"></div>
+
+	<div class="dock-tooltip" *ngIf="showTooltip && label">
+		{{ label | translate }}
+	</div>
+</div>

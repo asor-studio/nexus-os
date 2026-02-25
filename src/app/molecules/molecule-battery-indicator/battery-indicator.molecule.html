@@ -1,0 +1,4 @@
+<div class="battery-container" [style.color]="batteryColor">
+	<lucide-icon [name]="batteryIcon" [size]="16"></lucide-icon>
+	<span class="battery-percent">{{ props.battery | number: '1.0-0' }}%</span>
+</div>

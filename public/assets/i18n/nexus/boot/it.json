@@ -1,0 +1,12 @@
+{
+    "BOOT.KERNEL_LOADING": "Caricamento Kernel NEXUS...",
+    "BOOT.INIT_MEMORY": "Inizializzazione gestione memoria...",
+    "BOOT.CPU_DETECT": "CPU: 32 core rilevati...",
+    "BOOT.SECURE_BOOT": "ACPI: Secure Boot abilitato",
+    "BOOT.LEGACY_GPU": "Dispositivo [GPU-0] in modalità legacy",
+    "BOOT.MOUNT_VFS": "Montaggio file system virtuale...",
+    "BOOT.NEURAL_LOAD": "Caricamento moduli interfaccia neurale...",
+    "BOOT.NET_INIT": "Adattatore di rete inizializzato",
+    "BOOT.STABLE": "NEXUS OS v1.0.4 stabile",
+    "BOOT.READY": "Pronto."
+}

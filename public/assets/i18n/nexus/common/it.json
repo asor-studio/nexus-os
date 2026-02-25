@@ -1,0 +1,21 @@
+{
+    "COMMON.SEARCH": "Cerca...",
+    "COMMON.STAT": "Statistica di sistema",
+    "COMMON.APPLICATION": "Applicazione",
+    "COMMON.LOADING": "Caricamento...",
+    "COMMON.ERROR_GENERIC": "Si è verificato un errore",
+    "COMMON.ACTIVITIES": "Attività",
+    "COMMON.SETTINGS": "Impostazioni",
+    "COMMON.POWER_OFF": "Spegni",
+    "COMMON.WIFI": "Wi-Fi",
+    "COMMON.BLUETOOTH": "Bluetooth",
+    "COMMON.DND": "Non disturbare",
+    "COMMON.AIRPLANE": "Modalità Aereo",
+    "STATUS.ONLINE": "Online",
+    "STATUS.OFFLINE": "Offline",
+    "STATUS.DND": "Non disturbare",
+    "STATUS.AWAY": "Assente",
+    "CONTEXT.REFRESH": "Aggiorna",
+    "CONTEXT.CHANGE_WALLPAPER": "Cambia sfondo",
+    "CONTEXT.SYSTEM_SETTINGS": "Impostazioni di sistema"
+}

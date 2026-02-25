@@ -1,0 +1,57 @@
+@use '../../_variables' as *;
+
+.pagination-container {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	@include glass-panel;
+	padding: 6px 12px;
+	border-radius: 6px;
+	width: fit-content;
+
+	.nav-btn {
+		background: transparent;
+		border: none;
+		color: rgba(var(--nexus-border-rgb), 0.6);
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.2s $ease-holographic;
+		padding: 4px;
+		border-radius: 50%;
+
+		&:hover:not(:disabled) {
+			color: $font-primary-color;
+			background: rgba(var(--nexus-border-rgb), 0.1);
+			transform: scale(1.1);
+		}
+
+		&:disabled {
+			opacity: 0.2;
+			cursor: not-allowed;
+		}
+	}
+
+	.page-indicator {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font-family: $font-secondary; // Outfit
+		font-size: 0.85rem;
+		font-weight: $font-weight-medium;
+
+		.current {
+			color: $accent-primary;
+			font-weight: $font-weight-bold;
+		}
+
+		.separator {
+			color: rgba(var(--nexus-border-rgb), 0.2);
+		}
+
+		.total {
+			color: rgba(var(--nexus-border-rgb), 0.4);
+		}
+	}
+}

@@ -1,0 +1,565 @@
+@use 'sass:color';
+@use '../../_variables' as *;
+
+// ─────────────────────────────────────────────
+// Base container
+// ─────────────────────────────────────────────
+.login-container {
+	height: 100vh;
+	width: 100vw;
+	background-color: $bg-slate-950;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	overflow: hidden;
+	color: $font-primary-color;
+	font-family: $font-primary;
+
+	// Futuristic Neural Background
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(circle at 70% 30%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+			radial-gradient(circle at 20% 80%, rgba(129, 140, 248, 0.1) 0%, transparent 50%);
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.wallpaper-blur {
+		position: absolute;
+		inset: 0;
+		background: url('/assets/images/wallpape.png') center/cover;
+		filter: brightness(0.4) blur(40px);
+		transform: scale(1.1);
+		z-index: 0;
+	}
+
+	// ── Top bar ──
+	.gdm-top-bar {
+		padding: 40px;
+		display: flex;
+		justify-content: center;
+		z-index: 10;
+		animation: slide-down 0.8s $ease-holographic;
+
+		::ng-deep .clock-widget {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+			.time {
+				font-size: 4rem;
+				font-weight: 200;
+				letter-spacing: -4px;
+				background: linear-gradient(to bottom, $font-primary, $font-secondary);
+				-webkit-background-clip: text;
+				background-clip: text;
+				filter: drop-shadow(0 0 20px $bg-white-medium);
+				line-height: 1;
+			}
+
+			.date {
+				font-size: 1rem;
+				font-weight: 300;
+				opacity: 0.6;
+				text-transform: uppercase;
+				letter-spacing: 4px;
+				margin-top: 20px;
+			}
+		}
+	}
+
+	// ── Center panel ──
+	.gdm-center-panel {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 5;
+
+		.user-auth-card {
+			@include glass-panel;
+			padding: 32px 36px;
+			border-radius: 24px;
+			width: 100%;
+			max-width: 380px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			animation: auth-card-entrance 0.6s $ease-holographic;
+			position: relative;
+			overflow: hidden;
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 4px;
+				background: linear-gradient(90deg, transparent, $accent-primary, transparent);
+				animation: scan-horizontal 3s linear infinite;
+			}
+
+			&.loading {
+				pointer-events: none;
+
+				.login-prompt,
+				.register-form {
+					opacity: 0.5;
+					filter: blur(1px);
+				}
+			}
+		}
+	}
+
+	// ── Bottom actions ──
+	.gdm-bottom-actions {
+		padding: 24px 40px;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		z-index: 10;
+
+		.bottom-actions-left,
+		.bottom-actions-right {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+		}
+
+		.action-link {
+			font-size: 12px;
+			color: $font-muted;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+
+			&:hover {
+				color: $font-primary;
+				letter-spacing: 3px;
+				text-shadow: 0 0 10px rgba(var(--nexus-border-rgb), 0.5);
+			}
+		}
+	}
+}
+
+// ─────────────────────────────────────────────
+// User Switcher
+// ─────────────────────────────────────────────
+.user-switcher-wrapper {
+	position: relative;
+}
+
+.user-switcher-panel {
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	margin-bottom: 12px;
+	width: 280px;
+	@include glass-panel;
+	border-radius: 18px;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	animation: panel-fade-in 0.25s ease;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); // Keeping black shadow
+}
+
+// ─────────────────────────────────────────────
+// Mode panels
+// ─────────────────────────────────────────────
+.mode-panel {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	animation: panel-fade-in 0.35s ease;
+}
+
+// ── Neutral avatar ──
+.neutral-avatar {
+	width: 72px;
+	height: 72px;
+	margin-bottom: 6px;
+	filter: drop-shadow(0 0 12px $bg-white-high);
+
+	svg {
+		width: 100%;
+		height: 100%;
+	}
+
+	&.new-user svg circle:first-child {
+		fill: rgba(var(--nexus-accent-primary-rgb), 0.12);
+	}
+}
+
+// ── Current user info (login panel — preselected user) ──
+.current-user-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	margin-bottom: 4px;
+}
+
+.current-user-fullname {
+	font-size: 20px;
+	font-weight: 300;
+	letter-spacing: 1px;
+	color: $font-primary;
+}
+
+.current-user-username {
+	font-size: 12px;
+	color: rgba(var(--nexus-border-rgb), 0.35);
+	letter-spacing: 2px;
+	text-transform: lowercase;
+}
+
+// ── Input containers ──
+.login-prompt,
+.register-form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.input-container {
+	display: flex;
+	align-items: center;
+	background: rgba(var(--nexus-border-rgb), 0.03);
+	border: 1px solid rgba(var(--nexus-border-rgb), 0.1);
+	border-radius: 12px;
+	padding: 2px 16px;
+	transition: all 0.3s $ease-holographic;
+
+	&:focus-within {
+		background: rgba(var(--nexus-border-rgb), 0.07);
+		border-color: rgba(var(--nexus-accent-primary-rgb), 0.5);
+		box-shadow: 0 0 20px rgba(var(--nexus-accent-primary-rgb), 0.12);
+		transform: translateY(-1px);
+	}
+
+	input {
+		flex: 1;
+		background: transparent;
+		border: none;
+		color: $font-primary-color;
+		font-size: 14px;
+		padding: 10px 0;
+		outline: none;
+		font-weight: 300;
+
+		&::placeholder {
+			color: rgba(var(--nexus-border-rgb), 0.25);
+			font-size: 12px;
+		}
+	}
+}
+
+.password-container {
+	position: relative;
+	display: flex;
+	align-items: center;
+	background: rgba(var(--nexus-border-rgb), 0.03);
+	border: 1px solid rgba(var(--nexus-border-rgb), 0.1);
+	border-radius: 12px;
+	padding: 2px 2px 2px 16px;
+	transition: all 0.3s $ease-holographic;
+
+	&:focus-within {
+		background: rgba(var(--nexus-border-rgb), 0.07);
+		border-color: rgba(var(--nexus-accent-primary-rgb), 0.5);
+		box-shadow: 0 0 20px rgba(var(--nexus-accent-primary-rgb), 0.12);
+		transform: translateY(-1px);
+	}
+
+	input {
+		flex: 1;
+		background: transparent;
+		border: none;
+		color: $font-primary-color;
+		font-size: 14px;
+		padding: 10px 0;
+		outline: none;
+		font-weight: 300;
+		letter-spacing: 2px;
+
+		&::placeholder {
+			color: rgba(var(--nexus-border-rgb), 0.25);
+			letter-spacing: 0;
+			font-size: 12px;
+		}
+	}
+
+	.auth-btn {
+		width: 36px;
+		height: 36px;
+		border-radius: 10px;
+		border: 1px solid rgba(var(--nexus-accent-primary-rgb), 0.2);
+		background: rgba(var(--nexus-accent-primary-rgb), 0.1);
+		color: $accent-primary;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		flex-shrink: 0;
+
+		&:hover:not(:disabled) {
+			background: $accent-primary;
+			color: $font-primary;
+			box-shadow: 0 0 12px rgba(var(--nexus-accent-primary-rgb), 0.5);
+		}
+
+		&:disabled {
+			opacity: 0.35;
+			cursor: not-allowed;
+		}
+	}
+}
+
+// ── Error message ──
+.error-message {
+	font-size: 12px;
+	color: $color-error;
+	text-align: center;
+	margin: 0;
+	padding: 4px 8px;
+	background: $color-error-bg;
+	border-radius: 8px;
+	animation: panel-fade-in 0.2s ease;
+}
+
+// ── Register title ──
+.register-title {
+	font-size: 18px;
+	font-weight: 300;
+	letter-spacing: 2px;
+	margin: 0;
+	text-transform: uppercase;
+	opacity: 0.9;
+}
+
+.register-subtitle {
+	font-size: 13px;
+	color: rgba(var(--nexus-border-rgb), 0.4);
+	margin: -8px 0 4px;
+
+	em {
+		font-style: normal;
+		color: $accent-primary;
+	}
+}
+
+// ── Text link (back / switch user) ──
+.text-link {
+	background: none;
+	border: none;
+	color: rgba(var(--nexus-border-rgb), 0.35);
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 0;
+	transition: color 0.2s ease;
+	font-family: $font-primary;
+
+	&:hover:not(:disabled) {
+		color: $font-secondary;
+	}
+
+	&:disabled {
+		opacity: 0.3;
+		cursor: not-allowed;
+	}
+}
+
+// ── Switch user panel ──
+.switch-user-panel {
+	gap: 12px;
+}
+
+.select-user-label {
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	color: rgba(var(--nexus-border-rgb), 0.4);
+	margin: 0 0 4px;
+}
+
+.user-list {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	max-height: 280px;
+	overflow-y: auto;
+	padding-right: 2px;
+
+	&::-webkit-scrollbar {
+		width: 3px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $bg-white-medium;
+		border-radius: 4px;
+	}
+}
+
+.user-list-item {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 10px 14px;
+	background: $bg-white-low;
+	border: 1px solid $bg-white-low;
+	border-radius: 14px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-family: $font-primary;
+	text-align: left;
+	color: $font-primary-color;
+	width: 100%;
+
+	&:hover {
+		background: $border-subtle;
+		border-color: rgba(var(--nexus-accent-primary-rgb), 0.3);
+		transform: translateX(3px);
+	}
+
+	&.new-user-item {
+		border-style: dashed;
+		border-color: $border-medium;
+
+		.user-list-avatar.new {
+			background: rgba(var(--nexus-accent-primary-rgb), 0.1);
+			border-color: rgba(var(--nexus-accent-primary-rgb), 0.2);
+			color: $accent-primary;
+		}
+	}
+}
+
+.user-list-avatar {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background: $bg-white-low;
+	border: 1px solid $border-subtle;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+
+	svg {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.user-list-info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.user-list-name {
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.user-list-username {
+	font-size: 11px;
+	color: rgba(var(--nexus-border-rgb), 0.35);
+}
+
+.user-list-chevron {
+	color: rgba(var(--nexus-border-rgb), 0.25);
+}
+
+// ─────────────────────────────────────────────
+// Spinner
+// ─────────────────────────────────────────────
+.gdm-spinner {
+	width: 20px;
+	height: 20px;
+	border: 2px solid rgba(var(--nexus-accent-primary-rgb), 0.2);
+	border-top-color: $accent-primary;
+	border-radius: 50%;
+	animation: spin 0.8s linear infinite;
+}
+
+// ─────────────────────────────────────────────
+// Keyframes
+// ─────────────────────────────────────────────
+@keyframes slide-down {
+	from {
+		opacity: 0;
+		transform: translateY(-40px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes auth-card-entrance {
+	from {
+		opacity: 0;
+		transform: scale(0.9) translateY(20px);
+		filter: blur(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+		filter: blur(0);
+	}
+}
+
+@keyframes scan-horizontal {
+	0% {
+		left: -100%;
+	}
+
+	100% {
+		left: 100%;
+	}
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes panel-fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

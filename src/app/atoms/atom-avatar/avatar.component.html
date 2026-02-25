@@ -1,0 +1,18 @@
+<div
+	class="nx-avatar"
+	[class.size-sm]="size === 'sm'"
+	[class.size-md]="size === 'md'"
+	[class.size-lg]="size === 'lg'"
+	[class.status-online]="status === 'online'"
+	[class.status-offline]="status === 'offline'"
+	[class.status-dnd]="status === 'dnd'"
+	[class.status-away]="status === 'away'"
+>
+	<img class="avatar-image" *ngIf="src" [src]="src" [alt]="altText" />
+
+	<div class="avatar-fallback" *ngIf="!src">
+		<ng-content></ng-content>
+	</div>
+
+	<div class="status-indicator" *ngIf="status !== 'none'"></div>
+</div>

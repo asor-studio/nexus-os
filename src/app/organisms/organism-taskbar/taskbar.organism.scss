@@ -1,0 +1,126 @@
+@use '../../_variables' as *;
+
+.taskbar-container {
+	height: 46px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: $bg-surface-high;
+	backdrop-filter: blur(24px);
+	border: 1px solid $border-subtle;
+	position: relative;
+	z-index: 1000;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+
+	.taskbar-section {
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+
+	.section-left {
+		gap: 12px;
+
+		.menu-trigger {
+			background: transparent;
+			border: none;
+			color: $font-primary-color;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			cursor: pointer;
+			padding: 4px 10px;
+			border-radius: 6px;
+			transition: background 0.2s ease;
+
+			&:hover {
+				background: $border-subtle;
+			}
+
+			.label {
+				font-size: 0.8rem;
+				font-weight: $font-weight-medium;
+				@include text-uppercase-tracking;
+			}
+		}
+
+		.global-search {
+			width: 180px;
+		}
+	}
+
+	.section-center {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+
+		::ng-deep nx-clock-widget .clock-widget {
+			flex-direction: row;
+			gap: 8px;
+			filter: none;
+			align-items: center;
+
+			.time {
+				font-size: 0.9rem;
+				font-weight: $font-weight-medium;
+				letter-spacing: 0;
+				line-height: 1;
+			}
+
+			.date {
+				font-size: 0.75rem;
+				margin-top: 0;
+				opacity: 0.5;
+				color: $font-secondary;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	.section-right {
+		gap: 12px;
+		cursor: pointer;
+		padding: 4px 8px;
+		border-radius: 6px;
+		transition: background 0.2s ease;
+
+		&:hover {
+			background: $bg-white-low;
+		}
+
+		.tray-group {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			color: $font-secondary;
+
+			.tray-icon {
+				transition: color 0.2s ease;
+
+				&:hover {
+					color: $font-primary-color;
+				}
+			}
+
+			::ng-deep nx-weather-widget .weather-widget {
+				background: transparent;
+				border: none;
+				padding: 0;
+
+				.temp {
+					font-size: 0.8rem;
+				}
+
+				.city {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.holographic-underline {
+		display: none;
+	}
+}

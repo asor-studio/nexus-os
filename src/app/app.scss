@@ -1,0 +1,38 @@
+@use './variables.scss' as *;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Geist+Sans:wght@300;400;500;600&display=swap');
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	background-color: $bg-slate-950;
+	color: $font-primary-color;
+	font-family: $font-primary;
+	font-weight: $font-weight-regular;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+// Global Custom Scrollbar for inner components
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(var(--nexus-border-rgb), 0.1);
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(var(--nexus-border-rgb), 0.2);
+}

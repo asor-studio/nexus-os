@@ -1,0 +1,9 @@
+<div class="tile-container" [class.is-active]="isActive" (click)="onToggle()">
+	<div class="tile-content">
+		<div class="icon-wrapper">
+			<lucide-icon [name]="icon" [size]="24"></lucide-icon>
+		</div>
+		<span class="tile-label">{{ label | translate }}</span>
+	</div>
+	<div class="active-effect" *ngIf="isActive"></div>
+</div>

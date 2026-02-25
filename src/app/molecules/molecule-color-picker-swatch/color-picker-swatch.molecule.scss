@@ -1,0 +1,40 @@
+@use '../../_variables' as *;
+
+.swatch-container {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	cursor: pointer;
+	position: relative;
+	transition:
+		transform 0.2s $ease-holographic,
+		box-shadow 0.2s ease;
+	border: 2px solid rgba(var(--nexus-border-rgb), 0.1);
+
+	&:hover {
+		transform: scale(1.15);
+		box-shadow: 0 0 15px rgba(var(--nexus-border-rgb), 0.2);
+	}
+
+	.selection-indicator {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 12px;
+		height: 12px;
+		background: white;
+		border-radius: 50%;
+		transform: translate(-50%, -50%) scale(0);
+		transition: transform 0.3s $ease-holographic;
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+	}
+
+	&.is-selected {
+		border-color: $font-primary-color;
+		box-shadow: 0 0 20px rgba(var(--nexus-border-rgb), 0.4);
+
+		.selection-indicator {
+			transform: translate(-50%, -50%) scale(1);
+		}
+	}
+}

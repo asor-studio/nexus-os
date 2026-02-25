@@ -1,0 +1,46 @@
+@use '../../_variables' as *;
+
+.tab-header-container {
+	width: 100%;
+	border-bottom: 1px solid rgba(var(--nexus-border-rgb), 0.05);
+	padding: 0 4px;
+
+	.tabs-list {
+		display: flex;
+		gap: 24px;
+		align-items: center;
+
+		.tab-item {
+			background: transparent;
+			border: none;
+			padding: 12px 4px;
+			color: rgba(var(--nexus-border-rgb), 0.4);
+			font-size: 0.85rem;
+			font-weight: $font-weight-medium;
+			cursor: pointer;
+			transition: all 0.3s $ease-holographic;
+			position: relative;
+			@include text-uppercase-tracking;
+
+			&:hover {
+				color: rgba(var(--nexus-border-rgb), 0.8);
+			}
+
+			&.is-active {
+				color: $font-primary-color;
+				text-shadow: 0 0 10px rgba(var(--nexus-border-rgb), 0.3);
+
+				.active-indicator {
+					position: absolute;
+					bottom: -1px;
+					left: 0;
+					right: 0;
+					height: 2px;
+					background: $accent-primary;
+					box-shadow: 0 0 12px $accent-primary;
+					border-radius: 2px;
+				}
+			}
+		}
+	}
+}

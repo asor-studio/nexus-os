@@ -1,0 +1,12 @@
+<div class="progress-bar-container">
+	<div class="progress-header" *ngIf="label || status">
+		<span class="label" *ngIf="label">{{ label | translate }}</span>
+		<span class="status" *ngIf="status">{{ status | translate }}</span>
+	</div>
+	<div class="progress-track">
+		<div class="progress-fill" [style.width.%]="progress">
+			<div class="glow"></div>
+		</div>
+	</div>
+	<div class="progress-percentage" *ngIf="progress > 0">{{ progress }}%</div>
+</div>

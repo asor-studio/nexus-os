@@ -1,0 +1,12 @@
+<div class="toast-container" *ngIf="notification" [class]="'type-' + notification.type">
+	<div class="toast-icon">
+		<lucide-icon [name]="getIconName()"></lucide-icon>
+	</div>
+	<div class="toast-content">
+		<span class="toast-message">{{ notification.message | translate }}</span>
+		<span class="toast-time">{{ notification.timestamp | date: 'HH:mm' }}</span>
+	</div>
+	<button class="toast-close" (click)="onClose()">
+		<lucide-icon name="x"></lucide-icon>
+	</button>
+</div>

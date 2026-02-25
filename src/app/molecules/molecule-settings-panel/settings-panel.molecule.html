@@ -1,0 +1,144 @@
+<div class="win-settings-container">
+	<!-- Sidebar Navigation -->
+	<aside class="win-sidebar">
+		<!-- User Profile Header (Moved to Sidebar) -->
+		<header class="win-user-header" *ngIf="props.user">
+			<nx-avatar [src]="props.user.avatarUrl" [status]="props.user.status" size="lg"></nx-avatar>
+			<div class="win-user-info">
+				<h1 class="win-display-name">{{ props.user.fullName }}</h1>
+				<p class="win-user-details">@{{ props.user.username }}</p>
+			</div>
+		</header>
+
+		<div class="win-nav-group">
+			<div class="win-nav-item" [class.active]="activeSection === 'section-system'"
+				(click)="selectSection('section-system')" title="System">
+				<lucide-icon name="monitor" [size]="18"></lucide-icon>
+				<span>{{ 'SETTINGS.NAV.SYSTEM' | translate }}</span>
+			</div>
+			<div class="win-nav-item" [class.active]="activeSection === 'section-bluetooth'"
+				(click)="selectSection('section-bluetooth')" title="Bluetooth & devices">
+				<lucide-icon name="bluetooth" [size]="18"></lucide-icon>
+				<span>{{ 'SETTINGS.NAV.BLUETOOTH' | translate }}</span>
+			</div>
+			<div class="win-nav-item" [class.active]="activeSection === 'section-network'"
+				(click)="selectSection('section-network')" title="Network & internet">
+				<lucide-icon name="wifi" [size]="18"></lucide-icon>
+				<span>{{ 'SETTINGS.NAV.NETWORK' | translate }}</span>
+			</div>
+			<div class="win-nav-item" [class.active]="activeSection === 'section-personalization'"
+				(click)="selectSection('section-personalization')" title="Personalization">
+				<lucide-icon name="palette" [size]="18"></lucide-icon>
+				<span>{{ 'SETTINGS.NAV.PERSONALIZATION' | translate }}</span>
+			</div>
+			<div class="win-nav-item" [class.active]="activeSection === 'section-accounts'"
+				(click)="selectSection('section-accounts')" title="Accounts">
+				<lucide-icon name="user" [size]="18"></lucide-icon>
+				<span>{{ 'SETTINGS.NAV.ACCOUNTS' | translate }}</span>
+			</div>
+		</div>
+	</aside>
+
+	<!-- Main Content Area -->
+	<main class="win-main-content">
+
+
+		<div class="win-scroll-viewport">
+			<!-- System Section (Audio & Visual) -->
+			<section class="win-settings-section" id="section-system" *ngIf="activeSection === 'section-system'">
+				<h2 class="win-section-title">{{ 'SETTINGS.NAV.SYSTEM' | translate }}</h2>
+				<div class="win-system-grid">
+					<div class="win-system-tile">
+						<nx-slider-control #ChildRef icon="volume-2" label="SETTINGS.VOLUME"
+							propertyPath="volume"></nx-slider-control>
+						<div class="tile-actions">
+							<nx-toggle-switch #ChildRef label="SETTINGS.MUTE_SYSTEM"
+								propertyPath="isMuted"></nx-toggle-switch>
+						</div>
+					</div>
+
+					<div class="win-system-tile">
+						<nx-slider-control #ChildRef icon="sun" label="SETTINGS.BRIGHTNESS"
+							propertyPath="brightness"></nx-slider-control>
+						<div class="tile-actions">
+							<nx-toggle-switch #ChildRef label="SETTINGS.NIGHT_LIGHT"
+								propertyPath="nightLight"></nx-toggle-switch>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Bluetooth Section -->
+			<section class="win-settings-section" id="section-bluetooth" *ngIf="activeSection === 'section-bluetooth'">
+				<h2 class="win-section-title">{{ 'SETTINGS.NAV.BLUETOOTH' | translate }}</h2>
+				<div class="win-settings-card">
+					<div class="win-setting-row">
+						<nx-toggle-switch #ChildRef label="SETTINGS.BLUETOOTH"
+							propertyPath="bluetoothEnabled"></nx-toggle-switch>
+					</div>
+				</div>
+			</section>
+
+			<!-- Network Section -->
+			<section class="win-settings-section" id="section-network" *ngIf="activeSection === 'section-network'">
+				<h2 class="win-section-title">{{ 'SETTINGS.NAV.NETWORK' | translate }}</h2>
+				<div class="win-settings-card">
+					<div class="win-setting-row">
+						<nx-toggle-switch #ChildRef label="SETTINGS.WIFI" propertyPath="wifiEnabled"></nx-toggle-switch>
+					</div>
+				</div>
+			</section>
+
+			<!-- Personalization Section -->
+			<section class="win-settings-section" id="section-personalization"
+				*ngIf="activeSection === 'section-personalization'">
+				<h2 class="win-section-title">{{ 'SETTINGS.PERSONALIZATION' | translate }}</h2>
+				<div class="win-settings-card">
+					<div class="win-theme-container">
+						<label class="win-card-label">{{ 'SETTINGS.THEME' | translate }}</label>
+						<div class="win-theme-grid">
+							<button class="win-theme-btn" [class.selected]="props.theme === 'light'"
+								(click)="props.theme = 'light'">
+								<div class="theme-swatch light"></div>
+								<span>{{ 'THEME.LIGHT' | translate }}</span>
+							</button>
+							<button class="win-theme-btn" [class.selected]="props.theme === 'dark'"
+								(click)="props.theme = 'dark'">
+								<div class="theme-swatch dark"></div>
+								<span>{{ 'THEME.DARK' | translate }}</span>
+							</button>
+							<button class="win-theme-btn" [class.selected]="props.theme === 'holographic'"
+								(click)="props.theme = 'holographic'">
+								<div class="theme-swatch holographic"></div>
+								<span>{{ 'THEME.HOLOGRAPHIC' | translate }}</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Account Section -->
+			<section class="win-settings-section" id="section-accounts" *ngIf="activeSection === 'section-accounts'">
+				<h2 class="win-section-title">{{ 'SETTINGS.IDENTITY' | translate }}</h2>
+				<div class="win-settings-card">
+					<div class="win-setting-row">
+						<nx-form-field label="SETTINGS.FULL_NAME" [value]="props.user.fullName"
+							(valueChange)="props.user.fullName = $event"></nx-form-field>
+					</div>
+					<div class="win-setting-row">
+						<nx-form-field label="SETTINGS.AVATAR_URL" [value]="props.user.avatarUrl"
+							(valueChange)="props.user.avatarUrl = $event"></nx-form-field>
+					</div>
+					<div class="win-setting-row">
+						<nx-toggle-switch #ChildRef label="SETTINGS.SHOW_PROFILE"
+							propertyPath="showProfile"></nx-toggle-switch>
+					</div>
+					<div class="win-setting-row">
+						<nx-toggle-switch #ChildRef label="SETTINGS.ANONYMOUS_MODE"
+							propertyPath="isAnonymous"></nx-toggle-switch>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+</div>

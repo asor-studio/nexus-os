@@ -1,0 +1,49 @@
+@use '../../_variables' as *;
+
+.media-container {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	@include glass-panel;
+	padding: 10px 20px;
+	border-radius: 6px;
+	width: fit-content;
+	background: rgba(15, 23, 42, 0.4);
+
+	.control-btn {
+		background: transparent;
+		border: none;
+		color: rgba(var(--nexus-border-rgb), 0.6);
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s $ease-holographic;
+
+		&:hover {
+			color: $font-primary-color;
+			transform: scale(1.1);
+		}
+
+		&.primary {
+			width: 44px;
+			height: 44px;
+			border-radius: 50%;
+			background: rgba(var(--nexus-border-rgb), 0.08);
+			color: $accent-primary;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+			&:hover {
+				background: rgba(var(--nexus-accent-primary-rgb), 0.2);
+				color: $accent-primary;
+				box-shadow: 0 0 20px rgba(var(--nexus-accent-primary-rgb), 0.3);
+			}
+		}
+
+		&.secondary {
+			&:active {
+				transform: scale(0.9);
+			}
+		}
+	}
+}

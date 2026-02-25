@@ -1,0 +1,13 @@
+<div class="media-container">
+	<button class="control-btn secondary" (click)="previous.emit()">
+		<lucide-icon [size]="18" name="skip-back"></lucide-icon>
+	</button>
+
+	<button class="control-btn primary" (click)="togglePlay()">
+		<lucide-icon [name]="isPlaying ? 'pause' : 'play'" [size]="24"></lucide-icon>
+	</button>
+
+	<button class="control-btn secondary" (click)="next.emit()">
+		<lucide-icon [size]="18" name="skip-forward"></lucide-icon>
+	</button>
+</div>

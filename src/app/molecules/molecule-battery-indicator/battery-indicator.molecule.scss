@@ -1,0 +1,19 @@
+@use '../../_variables' as *;
+
+.battery-container {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-family: $font-mono;
+	font-weight: $font-weight-bold;
+	transition: color 0.3s $ease-holographic;
+
+	.battery-percent {
+		font-size: 0.7rem;
+	}
+
+	lucide-icon {
+		display: flex;
+		align-items: center;
+	}
+}

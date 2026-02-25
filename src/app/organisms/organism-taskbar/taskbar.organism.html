@@ -1,0 +1,32 @@
+<header class="taskbar-container">
+	<!-- Left Section: Activities / Menu -->
+	<div class="taskbar-section section-left">
+		<button class="menu-trigger" (click)="menuToggle.emit()">
+			<lucide-icon [size]="18" name="layout-grid"></lucide-icon>
+			<span class="label">{{ 'COMMON.ACTIVITIES' | translate }}</span>
+		</button>
+		<div class="active-app-indicator" *ngIf="activeAppTitle">
+			<span class="separator">|</span>
+			<span class="active-app-name">{{ activeAppTitle }}</span>
+		</div>
+		<nx-search-bar class="global-search" #ChildRef></nx-search-bar>
+	</div>
+
+	<!-- Center Section: Clock / Date -->
+	<div class="taskbar-section section-center">
+		<nx-clock-widget #ChildRef></nx-clock-widget>
+	</div>
+
+	<!-- Right Section: System Metrics / Profile -->
+	<div class="taskbar-section section-right" (click)="controlCenterToggle.emit()">
+		<div class="tray-group">
+			<nx-weather-widget #ChildRef></nx-weather-widget>
+			<nx-battery-indicator #ChildRef></nx-battery-indicator>
+			<lucide-icon class="tray-icon" [size]="16" name="wifi"></lucide-icon>
+			<lucide-icon class="tray-icon" [size]="16" name="volume-2"></lucide-icon>
+		</div>
+		<nx-user-profile-badge #ChildRef></nx-user-profile-badge>
+	</div>
+
+	<div class="holographic-underline"></div>
+</header>

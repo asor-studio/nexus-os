@@ -1,0 +1,41 @@
+@use '../../_variables' as *;
+
+.weather-container {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 6px 14px;
+	@include glass-panel;
+	border-radius: 6px;
+	color: $font-primary;
+	cursor: pointer;
+	transition: $ease-holographic;
+
+	&:hover {
+		background: $border-subtle;
+		transform: translateY(-1px);
+	}
+}
+
+.weather-icon {
+	display: flex;
+	align-items: center;
+	color: $color-warning; // Sunny amber
+}
+
+.weather-info {
+	display: flex;
+	flex-direction: column;
+
+	.temperature {
+		font-size: 0.9rem;
+		font-weight: $font-weight-bold;
+		line-height: 1;
+	}
+
+	.city {
+		font-size: 0.65rem;
+		@include text-uppercase-tracking;
+		color: $font-muted;
+	}
+}

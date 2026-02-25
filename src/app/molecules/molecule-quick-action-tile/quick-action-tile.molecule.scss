@@ -1,0 +1,84 @@
+@use '../../_variables' as *;
+
+.tile-container {
+	@include glass-panel;
+	width: 100px;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.3s $ease-holographic;
+	background-color: rgba(15, 23, 42, 0.25);
+	border-radius: 6px;
+	position: relative;
+	overflow: hidden;
+
+	&:hover {
+		background-color: rgba(var(--nexus-border-rgb), 0.05);
+		transform: translateY(-4px);
+		box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+
+		.icon-wrapper {
+			transform: scale(1.1);
+			color: $font-primary-color;
+		}
+	}
+
+	.tile-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+		z-index: 2;
+
+		.icon-wrapper {
+			width: 44px;
+			height: 44px;
+			border-radius: 50%;
+			background: rgba(var(--nexus-border-rgb), 0.05);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: rgba(var(--nexus-border-rgb), 0.6);
+			transition: all 0.3s $ease-holographic;
+		}
+
+		.tile-label {
+			font-size: 0.7rem;
+			font-weight: $font-weight-medium;
+			color: rgba(var(--nexus-border-rgb), 0.5);
+			@include text-uppercase-tracking;
+		}
+	}
+
+	&.is-active {
+		background-color: rgba(var(--nexus-accent-primary-rgb), 0.15);
+		border-color: rgba(var(--nexus-accent-primary-rgb), 0.4);
+		box-shadow: 0 0 25px rgba(var(--nexus-accent-primary-rgb), 0.15);
+
+		.icon-wrapper {
+			background-color: $accent-primary;
+			color: $font-primary-color;
+			box-shadow: 0 0 15px rgba(var(--nexus-accent-primary-rgb), 0.5);
+		}
+
+		.tile-label {
+			color: $font-primary-color;
+			text-shadow: 0 0 8px rgba(var(--nexus-border-rgb), 0.4);
+		}
+
+		.active-effect {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: radial-gradient(circle at top right,
+					rgba(var(--nexus-accent-primary-rgb), 0.2),
+					transparent);
+			pointer-events: none;
+		}
+	}
+}

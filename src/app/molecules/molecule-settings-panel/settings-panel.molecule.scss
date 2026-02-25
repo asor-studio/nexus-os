@@ -1,0 +1,310 @@
+@use '../../_variables' as vars;
+
+:host {
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+
+.win-settings-container {
+	height: 100%;
+	display: flex;
+	background: rgba(32, 32, 32, 0.4); // Windows 11 Dark Mica-like
+	backdrop-filter: blur(50px) saturate(150%);
+	color: vars.$adwaita-text;
+	font-family: vars.$font-primary;
+}
+
+// --- Sidebar ---
+.win-sidebar {
+	width: 280px;
+	padding: 1.5rem 1rem;
+	background: rgba(var(--nexus-border-rgb), 0.02);
+	border-right: 1px solid rgba(var(--nexus-border-rgb), 0.05);
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+
+	// User Profile moving into sidebar
+	.win-user-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid rgba(var(--nexus-border-rgb), 0.06);
+
+		::ng-deep {
+			.nx-avatar {
+				width: 48px !important;
+				height: 48px !important;
+				font-size: 1rem !important;
+			}
+
+			.status-indicator {
+				width: 12px !important;
+				height: 12px !important;
+			}
+		}
+
+		.win-user-info {
+			flex: 1;
+			min-width: 0;
+
+			.win-display-name {
+				font-size: 1.1rem;
+				font-weight: 600;
+				margin: 0;
+				color: vars.$font-primary-color;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+
+			.win-user-details {
+				font-size: 0.8rem;
+				opacity: 0.6;
+				margin: 0;
+			}
+		}
+	}
+
+	.win-nav-group {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.win-nav-item {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 0.6rem 1rem;
+		border-radius: 6px;
+		cursor: pointer;
+		transition: all 0.15s ease;
+		position: relative;
+		font-size: 0.9rem;
+		font-weight: 400;
+
+		lucide-icon {
+			opacity: 0.8;
+			color: vars.$accent-primary;
+		}
+
+		span {
+			opacity: 0.9;
+		}
+
+		&:hover {
+			background: rgba(var(--nexus-border-rgb), 0.05);
+		}
+
+		&.active {
+			background: rgba(var(--nexus-border-rgb), 0.08);
+			font-weight: 600;
+
+			// Windows 11 Active Indicator
+			&::before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 8px;
+				bottom: 8px;
+				width: 3px;
+				background: vars.$accent-primary;
+				border-radius: 99px;
+			}
+		}
+	}
+}
+
+// --- Main Content ---
+.win-main-content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 2.5rem 3rem;
+	overflow: hidden;
+	height: 100%;
+}
+
+.win-scroll-viewport {
+	flex: 1;
+	overflow-y: auto;
+	padding-right: 1rem;
+
+	&::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: rgba(var(--nexus-border-rgb), 0.1);
+		border-radius: 10px;
+	}
+}
+
+.win-settings-section {
+	margin-bottom: 2.5rem;
+	animation: fadeIn 0.3s ease;
+
+	.win-section-title {
+		font-size: 1.6rem;
+		font-weight: 600;
+		margin-bottom: 1.5rem;
+		color: vars.$font-primary-color;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// --- Grids & Tiles ---
+.win-system-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	gap: 1.25rem;
+
+	.win-system-tile {
+		background: rgba(var(--nexus-border-rgb), 0.03);
+		border: 1px solid rgba(var(--nexus-border-rgb), 0.06);
+		border-radius: 10px;
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		transition: all 0.2s ease;
+
+		&:hover {
+			background: rgba(var(--nexus-border-rgb), 0.05);
+			border-color: rgba(var(--nexus-border-rgb), 0.1);
+		}
+
+		.tile-actions {
+			padding-top: 1rem;
+			border-top: 1px solid rgba(var(--nexus-border-rgb), 0.04);
+		}
+
+		::ng-deep {
+			.slider-row {
+				padding: 0 !important;
+				background: transparent !important;
+				border: none !important;
+			}
+
+			.toggle-row {
+				padding: 0.5rem 0 !important;
+				background: transparent !important;
+				border: none !important;
+			}
+		}
+	}
+}
+
+// --- Cards & Rows ---
+.win-settings-card {
+	background: rgba(var(--nexus-border-rgb), 0.03);
+	border: 1px solid rgba(var(--nexus-border-rgb), 0.06);
+	border-radius: 8px;
+	overflow: hidden;
+
+	.win-setting-row {
+		padding: 1rem 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		&+.win-setting-row {
+			border-top: 1px solid rgba(var(--nexus-border-rgb), 0.04);
+		}
+
+		&.divider {
+			height: 1px;
+			padding: 0;
+			background: rgba(var(--nexus-border-rgb), 0.04);
+		}
+
+		// Adjust inner molecules for better alignment
+		::ng-deep {
+
+			.toggle-row,
+			.slider-row {
+				padding: 0 !important;
+				background: transparent !important;
+				border: none !important;
+			}
+		}
+	}
+}
+
+// --- Personalization Specific ---
+.win-theme-container {
+	.win-card-label {
+		display: block;
+		margin-bottom: 1rem;
+		font-size: 0.9rem;
+		opacity: 0.7;
+	}
+
+	.win-theme-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+		gap: 1rem;
+
+		.win-theme-btn {
+			background: rgba(var(--nexus-border-rgb), 0.03);
+			border: 1px solid rgba(var(--nexus-border-rgb), 0.06);
+			border-radius: 6px;
+			padding: 0.75rem;
+			cursor: pointer;
+			transition: all 0.2s;
+			color: inherit;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+
+			&:hover {
+				background: rgba(var(--nexus-border-rgb), 0.07);
+				border-color: rgba(var(--nexus-border-rgb), 0.12);
+			}
+
+			&.selected {
+				background: rgba(var(--nexus-accent-primary-rgb), 0.1);
+				border-color: vars.$accent-primary;
+				outline: 1px solid vars.$accent-primary;
+			}
+
+			.theme-swatch {
+				height: 60px;
+				border-radius: 4px;
+				border: 1px solid rgba(var(--nexus-border-rgb), 0.05);
+
+				&.light {
+					background: #f3f3f3;
+				}
+
+				&.dark {
+					background: #202020;
+				}
+
+				&.holographic {
+					background: linear-gradient(135deg, #0078d4, #b4a0ff);
+				}
+			}
+
+			span {
+				font-size: 0.85rem;
+				font-weight: 500;
+				text-align: center;
+			}
+		}
+	}
+}

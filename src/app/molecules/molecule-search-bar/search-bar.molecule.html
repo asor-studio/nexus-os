@@ -1,0 +1,11 @@
+<div class="nx-search-bar" [class.is-focused]="isFocused">
+	<lucide-icon class="search-icon" [size]="18" name="search"></lucide-icon>
+	<input
+		class="search-input"
+		[placeholder]="placeholder | translate"
+		(focus)="onFocus()"
+		(blur)="onBlur()"
+		(input)="onInput($event)"
+		type="text"
+	/>
+</div>

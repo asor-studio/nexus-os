@@ -1,0 +1,24 @@
+<div
+	class="form-field-container"
+	[class.has-value]="value"
+	[class.is-focused]="isFocused"
+	[class.has-error]="error"
+>
+	<div class="input-wrapper">
+		<input
+			class="glass-input"
+			[id]="id"
+			[type]="type"
+			[value]="value"
+			[placeholder]="isFocused ? (placeholder | translate) : ''"
+			(input)="onInput($event)"
+			(focus)="onFocus()"
+			(blur)="onBlur()"
+		/>
+		<label class="floating-label" [for]="id">{{ label | translate }}</label>
+		<div class="focus-glow"></div>
+	</div>
+	<div class="error-message" *ngIf="error">
+		{{ error | translate }}
+	</div>
+</div>

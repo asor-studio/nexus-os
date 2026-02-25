@@ -1,0 +1,370 @@
+@use '../../_variables' as *;
+
+.desktop-container {
+	height: 100vh;
+	width: 100vw;
+	width: 100vw;
+	background-color: $bg-slate-950;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	font-family: $font-primary;
+
+	.desktop-wallpaper {
+		position: absolute;
+		inset: 0;
+		background-color: rgb(var(--nexus-bg-rgb));
+		background-image:
+			radial-gradient(circle at 20% 30%, rgba(var(--nexus-accent-primary-rgb), 0.12), transparent 50%),
+			radial-gradient(circle at 80% 70%, rgba(var(--nexus-accent-secondary-rgb), 0.12), transparent 50%);
+		z-index: 0;
+	}
+
+	.gnome-top-bar {
+		height: 28px;
+		background: $bg-slate-950;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		padding: 0 12px;
+		font-size: 13.5px;
+		font-weight: 600;
+		z-index: 1000;
+		color: $font-primary-color;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+
+		.left-actions {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+
+			.top-bar-weather {
+				::ng-deep .weather-container {
+					background: transparent;
+					border: none;
+					box-shadow: none;
+					backdrop-filter: none;
+					padding: 0 8px;
+					height: 24px;
+
+					.temperature {
+						font-size: 13.5px;
+					}
+
+					.city {
+						display: none;
+					}
+				}
+			}
+
+			.activities-btn {
+				cursor: pointer;
+				transition: opacity 0.2s ease;
+
+				&:hover {
+					opacity: 0.8;
+				}
+			}
+
+			.active-app-indicator {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				font-weight: 700;
+				cursor: pointer;
+				padding: 0 10px;
+				border-radius: 9999px;
+				transition: background 0.2s ease;
+
+				&:hover {
+					background: rgba(var(--nexus-border-rgb), 0.1);
+				}
+
+				.separator {
+					display: none; // GNOME handles this via padding usually
+				}
+			}
+		}
+
+		.center-clock {
+			cursor: pointer;
+			padding: 0 12px;
+			border-radius: 4px;
+			transition: background 0.2s ease;
+			display: flex;
+			align-items: center;
+			height: 100%;
+
+			&:hover {
+				background: rgba(var(--nexus-border-rgb), 0.1);
+			}
+
+			::ng-deep .clock-widget {
+				padding: 0 !important;
+				margin: 0 !important;
+				text-shadow: none !important;
+				flex-direction: row !important;
+				gap: 8px;
+
+				.time {
+					font-size: 13.5px !important;
+					font-weight: 700 !important;
+				}
+
+				.date {
+					display: none !important;
+				}
+			}
+		}
+
+		.right-status {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			justify-content: flex-end;
+
+			.top-bar-user {
+				::ng-deep .profile-badge-container {
+					background: transparent;
+					border: none;
+					box-shadow: none;
+					backdrop-filter: none;
+					padding: 0 8px;
+					height: 24px;
+
+					.full-name {
+						font-size: 13.5px;
+					}
+
+					.status-label {
+						display: none;
+					}
+				}
+			}
+
+			.status-tray {
+				display: flex;
+				align-items: center;
+				gap: 16px;
+				padding: 0 8px;
+				height: 100%;
+				cursor: pointer;
+				transition: background 0.2s ease;
+
+				&:hover {
+					background: rgba(var(--nexus-border-rgb), 0.1);
+				}
+
+				.tray-icons {
+					display: flex;
+					align-items: center;
+					gap: 12px;
+					opacity: 0.9;
+
+					.cpu-stat {
+						display: flex;
+						align-items: center;
+						gap: 4px;
+
+						.stat-value {
+							font-size: 11px;
+							font-weight: 800;
+							color: $accent-primary;
+						}
+					}
+				}
+
+				.battery-status {
+					font-size: 12.5px;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+
+	.workspace {
+		flex: 1;
+		position: relative;
+		z-index: 1;
+		padding: 40px;
+
+		.window-adwaita {
+			position: absolute;
+			width: 800px;
+			height: 500px;
+			top: 60px;
+			left: 200px;
+			background: $adwaita-surface-dark;
+			border-radius: 6px;
+			border: 1px solid $adwaita-border-dark;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+			animation: zoom-in 0.2s $ease-holographic;
+
+			.window-content {
+				flex: 1;
+				padding: 0; // Padding handled by internal app logic
+				color: $adwaita-text;
+				overflow: hidden;
+			}
+		}
+	}
+
+	.window-content-inner {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+
+		nx-settings-panel {
+			flex: 1;
+			display: block;
+			min-height: 400px;
+		}
+	}
+
+	.placeholder-content {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		color: rgba(var(--nexus-border-rgb), 0.4);
+		padding: 2rem;
+		background: rgba(var(--nexus-border-rgb), 0.02);
+
+		p {
+			font-size: 1.1rem;
+			font-weight: 500;
+		}
+
+		nx-icon {
+			opacity: 0.5;
+		}
+	}
+
+	.gnome-dash-container {
+		position: absolute;
+		bottom: 12px;
+		left: 0;
+		right: 0;
+		display: flex;
+		justify-content: center;
+		z-index: 1000;
+		transition: transform 0.4s $ease-holographic;
+
+		.gnome-dash {
+			background: rgba(var(--nexus-border-rgb), 0.25);
+			backdrop-filter: blur(40px) saturate(180%);
+			padding: 6px 10px;
+			border-radius: 24px;
+			display: flex;
+			align-items: flex-end;
+			gap: 8px;
+			border: 1px solid rgba(var(--nexus-border-rgb), 0.2);
+			box-shadow:
+				0 4px 20px rgba(0, 0, 0, 0.15),
+				0 12px 40px rgba(0, 0, 0, 0.2);
+		}
+	}
+
+	.settings-panel-overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 2000;
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-start;
+		padding-top: 32px;
+		padding-right: 12px;
+
+		.settings-panel {
+			width: 280px;
+			background: rgba(36, 36, 36, 0.95);
+			backdrop-filter: blur(20px);
+			border: 1px solid rgba(var(--nexus-border-rgb), 0.1);
+			border-radius: 12px;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+			color: $font-primary-color;
+			padding: 16px;
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			animation: slide-down 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+			.panel-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				h3 {
+					margin: 0;
+					font-size: 14px;
+					font-weight: 600;
+					opacity: 0.8;
+				}
+
+				.close-icon {
+					cursor: pointer;
+					opacity: 0.6;
+
+					&:hover {
+						opacity: 1;
+					}
+				}
+			}
+
+			.panel-content {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+
+				.setting-item {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					font-size: 13px;
+					padding: 8px 0;
+					border-bottom: 1px solid rgba(var(--nexus-border-rgb), 0.05);
+
+					&:last-child {
+						border-bottom: none;
+					}
+
+					span {
+						opacity: 0.9;
+					}
+				}
+			}
+		}
+	}
+}
+
+@keyframes slide-down {
+	from {
+		opacity: 0;
+		transform: translateY(-10px) scale(0.98);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes zoom-in {
+	from {
+		opacity: 0;
+		transform: scale(0.98);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

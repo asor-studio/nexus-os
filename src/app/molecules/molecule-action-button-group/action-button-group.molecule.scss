@@ -1,0 +1,16 @@
+@use '../../_variables' as *;
+
+.action-group {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin-top: 0.5rem;
+
+	// Direct support for glass buttons projected into the group
+	::ng-content {
+		.btn-glass {
+			// Ensure child buttons follow the group's hierarchy
+			flex-shrink: 0;
+		}
+	}
+}

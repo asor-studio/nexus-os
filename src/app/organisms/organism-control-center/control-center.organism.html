@@ -1,0 +1,51 @@
+<div class="control-center-overlay" *ngIf="isOpen" (click)="close.emit()">
+	<div class="control-center-panel" (click)="$event.stopPropagation()">
+		<!-- Header / User -->
+		<div class="panel-section header-section">
+			<nx-user-profile-badge #ChildRef></nx-user-profile-badge>
+			<div class="power-actions">
+				<button class="action-btn" (click)="clickLogOut()">
+					<lucide-icon [size]="16" name="lock"></lucide-icon>
+				</button>
+				<button class="action-btn" (click)="clickPowerOff()">
+					<lucide-icon [size]="16" name="power"></lucide-icon>
+				</button>
+			</div>
+		</div>
+
+		<!-- Quick Actions Grid -->
+		<div class="panel-section grid-section">
+			<nx-quick-action-tile #ChildRef [isActive]="true" (toggle)="toggleWifi($event)" icon="wifi"
+				label="COMMON.WIFI"></nx-quick-action-tile>
+			<nx-quick-action-tile #ChildRef [isActive]="false" (toggle)="toggleBluetooth($event)" icon="bluetooth"
+				label="COMMON.BLUETOOTH"></nx-quick-action-tile>
+			<nx-quick-action-tile #ChildRef [isActive]="false" icon="moon" label="COMMON.DND"></nx-quick-action-tile>
+			<nx-quick-action-tile #ChildRef [isActive]="false" icon="plane"
+				label="COMMON.AIRPLANE"></nx-quick-action-tile>
+		</div>
+
+		<!-- Sliders -->
+		<div class="panel-section sliders-section">
+			<div class="slider-group">
+				<lucide-icon [size]="18" name="sun"></lucide-icon>
+				<nx-slider-control #ChildRef propertyPath="brightness"></nx-slider-control>
+			</div>
+			<div class="slider-group">
+				<lucide-icon [size]="18" name="volume-2"></lucide-icon>
+				<nx-slider-control #ChildRef propertyPath="volume"></nx-slider-control>
+			</div>
+		</div>
+
+		<!-- Footer / Battery & Info -->
+		<div class="panel-footer">
+			<div class="battery-status">
+				<lucide-icon [size]="14" name="battery"></lucide-icon>
+				<span>{{ props['battery'] }}%</span>
+			</div>
+			<div class="settings-link" (click)="openSettingsApp()">
+				<lucide-icon [size]="14" name="settings"></lucide-icon>
+				<span>{{ 'COMMON.SETTINGS' | translate }}</span>
+			</div>
+		</div>
+	</div>
+</div>

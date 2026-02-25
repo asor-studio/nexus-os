@@ -1,0 +1,57 @@
+@use '../../_variables' as *;
+
+.log-line {
+	display: flex;
+	gap: 1.25rem;
+	font-family: $font-mono;
+	font-size: 0.8rem;
+	padding: 4px 8px;
+	border-radius: 4px;
+	transition: background 0.2s ease;
+
+	&:hover {
+		background: rgba(var(--nexus-border-rgb), 0.03);
+	}
+
+	.timestamp {
+		color: rgba(var(--nexus-border-rgb), 0.3);
+		min-width: 90px;
+		font-weight: $font-weight-light;
+	}
+
+	.level {
+		font-weight: $font-weight-bold;
+		min-width: 50px;
+		text-align: center;
+		border-radius: 3px;
+		padding: 0 4px;
+		font-size: 0.7rem;
+		background: rgba(var(--nexus-border-rgb), 0.05);
+	}
+
+	&.level-info {
+		.level {
+			color: $accent-primary;
+			background: rgba(var(--nexus-accent-primary-rgb), 0.1);
+		}
+	}
+
+	&.level-warn {
+		.level {
+			color: $color-warning;
+			background: rgba(245, 158, 11, 0.1);
+		}
+	}
+
+	&.level-err {
+		.level {
+			color: $color-error;
+			background: rgba(239, 68, 68, 0.1);
+		}
+	}
+
+	.message {
+		color: rgba(var(--nexus-border-rgb), 0.7);
+		flex: 1;
+	}
+}

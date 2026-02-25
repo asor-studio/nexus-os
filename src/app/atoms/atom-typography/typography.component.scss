@@ -1,0 +1,50 @@
+@use '../../_variables' as *;
+
+:host {
+	display: block;
+}
+
+.nx-typography {
+	font-family: $font-primary;
+	margin: 0;
+
+	&.weight-light {
+		font-weight: $font-weight-light;
+	}
+
+	&.weight-regular {
+		font-weight: $font-weight-regular;
+	}
+
+	&.weight-medium {
+		font-weight: $font-weight-medium;
+	}
+
+	&.weight-semibold {
+		font-weight: $font-weight-semibold;
+	}
+
+	&.color-white {
+		color: $font-primary-color;
+	}
+
+	&.color-accent-primary {
+		color: $accent-primary;
+	}
+
+	&.color-accent-secondary {
+		color: $accent-secondary;
+	}
+
+	&.color-error {
+		color: $color-error;
+	}
+
+	&.color-warning {
+		color: $color-warning;
+	}
+
+	&.tracking-uppercase {
+		@include text-uppercase-tracking;
+	}
+}

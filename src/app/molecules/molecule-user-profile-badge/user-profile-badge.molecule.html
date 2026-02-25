@@ -1,0 +1,9 @@
+<div class="profile-badge-container" *ngIf="props.user">
+	<nx-avatar [src]="props.user.avatarUrl" [status]="props.user.status" size="sm"></nx-avatar>
+	<div class="user-info">
+		<span class="full-name">{{ props.user.fullName }}</span>
+		<span class="status-label">{{
+			'STATUS.' + props.user.status.toUpperCase() | translate
+		}}</span>
+	</div>
+</div>

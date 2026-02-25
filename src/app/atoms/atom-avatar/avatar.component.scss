@@ -1,0 +1,73 @@
+@use '../../_variables' as *;
+
+:host {
+	display: inline-block;
+}
+
+.nx-avatar {
+	position: relative;
+	border-radius: 50%;
+	@include glass-panel;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+
+	&.size-sm {
+		width: 32px;
+		height: 32px;
+		font-size: 0.75rem;
+	}
+
+	&.size-md {
+		width: 48px;
+		height: 48px;
+		font-size: 1rem;
+	}
+
+	&.size-lg {
+		width: 64px;
+		height: 64px;
+		font-size: 1.25rem;
+	}
+
+	.avatar-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.avatar-fallback {
+		color: $accent-primary;
+		font-weight: $font-weight-semibold;
+	}
+
+	.status-indicator {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 25%;
+		height: 25%;
+		border-radius: 50%;
+		border: 2px solid $bg-slate-950;
+		z-index: 2;
+	}
+
+	&.status-online .status-indicator {
+		background-color: #10b981;
+	}
+
+	/* Emerald 500 */
+	&.status-offline .status-indicator {
+		background-color: #6b7280;
+	}
+
+	/* Gray 500 */
+	&.status-dnd .status-indicator {
+		background-color: $color-error;
+	}
+
+	&.status-away .status-indicator {
+		background-color: $color-warning;
+	}
+}

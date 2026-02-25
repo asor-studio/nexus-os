@@ -1,0 +1,6 @@
+<div class="toggle-switch-container" [class.is-checked]="checked" (click)="checked = !checked">
+	<span class="toggle-label" *ngIf="label">{{ label | translate }}</span>
+	<div class="toggle-track">
+		<div class="toggle-thumb"></div>
+	</div>
+</div>

@@ -1,0 +1,12 @@
+{
+    "BOOT.KERNEL_LOADING": "NEXUS Kernel loading...",
+    "BOOT.INIT_MEMORY": "Initializing memory management...",
+    "BOOT.CPU_DETECT": "CPU: 32 cores detected...",
+    "BOOT.SECURE_BOOT": "ACPI: Secure Boot enabled",
+    "BOOT.LEGACY_GPU": "Device [GPU-0] running in legacy mode",
+    "BOOT.MOUNT_VFS": "Mounting virtual file system...",
+    "BOOT.NEURAL_LOAD": "Loading neural interface modules...",
+    "BOOT.NET_INIT": "Network adapter initialized",
+    "BOOT.STABLE": "NEXUS OS v1.0.4 stable",
+    "BOOT.READY": "Ready."
+}

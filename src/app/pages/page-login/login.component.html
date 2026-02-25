@@ -1,0 +1,283 @@
+<div class="login-container">
+	<div class="wallpaper-blur"></div>
+
+	<div class="gdm-top-bar">
+		<nx-clock-widget />
+	</div>
+
+	<div class="gdm-center-panel">
+		<div class="user-auth-card" [class.loading]="isLoading">
+			@if (!showRegister) {
+				<!-- ===== LOGIN ===== -->
+				<div class="mode-panel login-panel">
+					<div class="neutral-avatar">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 64 64"
+							fill="none"
+							aria-hidden="true"
+						>
+							<circle cx="32" cy="32" r="32" fill="rgba(255,255,255,0.06)" />
+							<circle cx="32" cy="22" r="10" fill="rgba(255,255,255,0.35)" />
+							<ellipse
+								cx="32"
+								cy="50"
+								rx="17"
+								ry="10"
+								fill="rgba(255,255,255,0.35)"
+							/>
+						</svg>
+					</div>
+
+					@if (currentUser) {
+						<!-- ── Preselected user → password only ── -->
+						<div class="current-user-info">
+							<span class="current-user-fullname">{{ currentUser.fullName }}</span>
+							<span class="current-user-username">{{ currentUser.username }}</span>
+						</div>
+
+						<div class="login-prompt">
+							<div class="password-container">
+								<input
+									id="login-password"
+									[(ngModel)]="password"
+									[placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
+									[disabled]="isLoading"
+									(keyup.enter)="onLogin()"
+									type="password"
+									autocomplete="current-password"
+								/>
+								<button
+									class="auth-btn"
+									[disabled]="isLoading || !password"
+									(click)="onLogin()"
+								>
+									@if (isLoading) {
+										<div class="gdm-spinner"></div>
+									} @else {
+										<lucide-icon [size]="20" name="arrow-right"></lucide-icon>
+									}
+								</button>
+							</div>
+
+							@if (errorMessage) {
+								<p class="error-message">{{ errorMessage | translate }}</p>
+							}
+						</div>
+					} @else {
+						<!-- ── No user selected → username + password ── -->
+						<div class="login-prompt">
+							<div class="input-container">
+								<input
+									id="login-username"
+									[(ngModel)]="loginUsername"
+									[placeholder]="'LOGIN.USERNAME_PLACEHOLDER' | translate"
+									[disabled]="isLoading"
+									type="text"
+									autocomplete="username"
+								/>
+							</div>
+							<div class="password-container">
+								<input
+									id="login-password-manual"
+									[(ngModel)]="password"
+									[placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
+									[disabled]="isLoading"
+									(keyup.enter)="onLogin()"
+									type="password"
+									autocomplete="current-password"
+								/>
+								<button
+									class="auth-btn"
+									[disabled]="isLoading || !loginUsername.trim() || !password"
+									(click)="onLogin()"
+								>
+									@if (isLoading) {
+										<div class="gdm-spinner"></div>
+									} @else {
+										<lucide-icon [size]="20" name="arrow-right"></lucide-icon>
+									}
+								</button>
+							</div>
+
+							@if (errorMessage) {
+								<p class="error-message">{{ errorMessage | translate }}</p>
+							}
+						</div>
+					}
+				</div>
+			} @else {
+				<!-- ===== REGISTER ===== -->
+				<div class="mode-panel register-panel">
+					<div class="neutral-avatar new-user">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 64 64"
+							fill="none"
+							aria-hidden="true"
+						>
+							<circle cx="32" cy="32" r="32" fill="rgba(56,189,248,0.10)" />
+							<circle cx="32" cy="22" r="10" fill="rgba(56,189,248,0.45)" />
+							<ellipse cx="32" cy="50" rx="17" ry="10" fill="rgba(56,189,248,0.45)" />
+						</svg>
+					</div>
+
+					<p class="register-title">{{ 'LOGIN.REGISTER_TITLE' | translate }}</p>
+
+					<div class="register-form">
+						<div class="input-container">
+							<input
+								id="reg-username"
+								[(ngModel)]="regUsername"
+								[placeholder]="'LOGIN.USERNAME_PLACEHOLDER' | translate"
+								[disabled]="isLoading"
+								type="text"
+								autocomplete="username"
+							/>
+						</div>
+						<div class="input-container">
+							<input
+								id="reg-fullname"
+								[(ngModel)]="regFullName"
+								[placeholder]="'LOGIN.FULLNAME_PLACEHOLDER' | translate"
+								[disabled]="isLoading"
+								type="text"
+								autocomplete="name"
+							/>
+						</div>
+						<div class="password-container">
+							<input
+								id="reg-password"
+								[(ngModel)]="regPassword"
+								[placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
+								[disabled]="isLoading"
+								(keyup.enter)="onRegister()"
+								type="password"
+								autocomplete="new-password"
+							/>
+							<button
+								class="auth-btn"
+								[disabled]="
+									isLoading ||
+									!regUsername.trim() ||
+									!regFullName.trim() ||
+									!regPassword
+								"
+								(click)="onRegister()"
+							>
+								@if (isLoading) {
+									<div class="gdm-spinner"></div>
+								} @else {
+									<lucide-icon [size]="20" name="user-check"></lucide-icon>
+								}
+							</button>
+						</div>
+
+						@if (errorMessage) {
+							<p class="error-message">{{ errorMessage | translate }}</p>
+						}
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+
+	<div class="gdm-bottom-actions">
+		<!-- ── Left: User Switcher ── -->
+		<div class="bottom-actions-left">
+			@if (!showRegister) {
+				<div class="user-switcher-wrapper">
+					@if (showUserSwitcher) {
+						<div class="user-switcher-panel">
+							<p class="select-user-label">{{ 'LOGIN.SELECT_USER' | translate }}</p>
+							<div class="user-list">
+								@for (user of props.users; track user.id) {
+									<button class="user-list-item" (click)="onSelectUser(user)">
+										<div class="user-list-avatar">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 36 36"
+												fill="none"
+											>
+												<circle
+													cx="18"
+													cy="18"
+													r="18"
+													fill="rgba(255,255,255,0.06)"
+												/>
+												<circle
+													cx="18"
+													cy="13"
+													r="5.5"
+													fill="rgba(255,255,255,0.35)"
+												/>
+												<ellipse
+													cx="18"
+													cy="28"
+													rx="9.5"
+													ry="5.5"
+													fill="rgba(255,255,255,0.35)"
+												/>
+											</svg>
+										</div>
+										<div class="user-list-info">
+											<span class="user-list-name">{{ user.fullName }}</span>
+											<span class="user-list-username">{{
+												user.username
+											}}</span>
+										</div>
+										<lucide-icon
+											class="user-list-chevron"
+											[size]="14"
+											name="chevron-right"
+										></lucide-icon>
+									</button>
+								}
+
+								<!-- "Not listed?" option → deselect user, show username+password -->
+								<button
+									class="user-list-item new-user-item"
+									(click)="onDeselectUser(); showUserSwitcher = false"
+								>
+									<div class="user-list-avatar new">
+										<lucide-icon [size]="16" name="user-x"></lucide-icon>
+									</div>
+									<div class="user-list-info">
+										<span class="user-list-name">{{
+											'LOGIN.OTHER_USER' | translate
+										}}</span>
+									</div>
+								</button>
+							</div>
+						</div>
+					}
+
+					@if (props.users.length > 0) {
+						<div class="action-link" (click)="toggleUserSwitcher()">
+							<lucide-icon [size]="14" name="users"></lucide-icon>
+							<span>{{ 'LOGIN.SWITCH_USER' | translate }}</span>
+						</div>
+					}
+				</div>
+
+				<div class="action-link" (click)="showRegister = true; errorMessage = ''">
+					<lucide-icon [size]="14" name="user-plus"></lucide-icon>
+					<span>{{ 'LOGIN.REGISTER' | translate }}</span>
+				</div>
+			} @else {
+				<div class="action-link" (click)="showRegister = false; errorMessage = ''">
+					<lucide-icon [size]="14" name="arrow-left"></lucide-icon>
+					<span>{{ 'LOGIN.BACK' | translate }}</span>
+				</div>
+			}
+		</div>
+
+		<!-- ── Right: Power off ── -->
+		<div class="bottom-actions-right">
+			<div class="action-link">
+				<lucide-icon [size]="14" name="power"></lucide-icon>
+				<span>{{ 'COMMON.POWER_OFF' | translate }}</span>
+			</div>
+		</div>
+	</div>
+</div>

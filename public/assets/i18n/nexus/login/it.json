@@ -1,0 +1,21 @@
+{
+    "LOGIN.PASSWORD_PLACEHOLDER": "Inserisci password",
+    "LOGIN.USERNAME_PLACEHOLDER": "Inserisci username",
+    "LOGIN.FULLNAME_PLACEHOLDER": "Inserisci nome completo",
+    "LOGIN.CONFIRM_PASSWORD_PLACEHOLDER": "Conferma password",
+    "LOGIN.NOT_LISTED": "Non in elenco?",
+    "LOGIN.GUEST_USER": "Utente Ospite",
+    "LOGIN.WELCOME_BACK": "Bentornato",
+    "LOGIN.UNKNOWN_USER": "Utente sconosciuto — registrati?",
+    "LOGIN.REGISTER_TITLE": "Crea Account",
+    "LOGIN.REGISTER_SUBMIT": "Registra",
+    "LOGIN.BACK": "Indietro",
+    "LOGIN.SWITCH_USER": "Cambia utente",
+    "LOGIN.NEW_USER": "Nuovo utente…",
+    "LOGIN.ERROR_WRONG_PASSWORD": "Password errata. Riprova.",
+    "LOGIN.ERROR_PASSWORDS_MISMATCH": "Le password non coincidono.",
+    "LOGIN.SELECT_USER": "Seleziona un utente",
+    "LOGIN.OTHER_USER": "Altro utente",
+    "LOGIN.ERROR_USER_NOT_FOUND": "Utente non trovato. Controlla il nome utente.",
+    "LOGIN.REGISTER": "Registrati"
+}
