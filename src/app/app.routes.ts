@@ -5,11 +5,11 @@ import { PageBootComponent } from './pages/page-boot/boot.component';
 import { PageLoginComponent } from './pages/page-login/login.component';
 import { PageDesktopComponent } from './pages/page-desktop/desktop.component';
 import {
-    NexusGlobalConnection,
-    NexusWeatherConnection,
-    NexusNotificationsConnection,
-    LoginConnectDataSet,
-    DesktopConnectDataSet,
+	NexusStateConnectionDesktop,
+	NexusStateConnectionGlobal,
+	NexusStateConnectionWeather,
+	NexusStateConnectionNotifications,
+	NexusStateConnectionLogin,
 } from './config/nexus-state.config';
 import { SystemLogLineMolecule } from './molecules/molecule-system-log-line/system-log-line.molecule';
 import { ClockWidgetMolecule } from './molecules/molecule-clock-widget/clock-widget.molecule';
@@ -33,147 +33,148 @@ import { NxTypographyComponent } from './atoms/atom-typography/typography.compon
 import { FormFieldMolecule } from './molecules/molecule-form-field/form-field.molecule';
 
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: NexusConfig.Route.BOOT,
-        pathMatch: 'full',
-    },
-    {
-        path: NexusConfig.Route.BOOT,
-        component: PageBootComponent,
-        data: {
-            I18nPath: [NexusConfig.TranslationUrl.BOOT],
-            Molecules: [
-                {
-                    Molecule: SystemLogLineMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.BOOT]
-                },
-            ],
-            Components: [
-                {
-                    Component: NxTypographyComponent,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON]
-                },
-            ],
-        } as IAsorRoute,
-    },
-    {
-        path: NexusConfig.Route.LOGIN,
-        component: PageLoginComponent,
-        data: {
-            I18nPath: [NexusConfig.TranslationUrl.LOGIN, NexusConfig.TranslationUrl.COMMON],
-            ConnectDataSet: LoginConnectDataSet,
-            Molecules: [
-                {
-                    Molecule: ClockWidgetMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.LOGIN]
-                },
-            ],
-            Components: [
-                {
-                    Component: NxTypographyComponent,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON]
-                },
-                {
-                    Component: NxButtonComponent,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON]
-                },
-            ],
-        } as IAsorRoute,
-    },
-    {
-        path: NexusConfig.Route.DESKTOP,
-        component: PageDesktopComponent,
-        canActivate: [AuthGuard],
-        data: {
-            I18nPath: [NexusConfig.TranslationUrl.DESKTOP, NexusConfig.TranslationUrl.COMMON],
-            ConnectDataSet: DesktopConnectDataSet,
-            AuthCheck: NexusConfig.AuthCheck.DESKTOP,
-            Molecules: [
-                {
-                    Molecule: ClockWidgetMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.DESKTOP],
-                    ConnectDataSet: NexusGlobalConnection,
-                },
-                { Molecule: NxDockItemMolecule, I18nPath: [NexusConfig.TranslationUrl.DESKTOP] },
-                {
-                    Molecule: NxSearchBarMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON],
-                    ConnectDataSet: NexusGlobalConnection,
-                },
-                {
-                    Molecule: NxStatCardMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON]
-                },
-                {
-                    Molecule: NxWindowHeaderMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON]
-                },
-                {
-                    Molecule: UserProfileBadgeMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON],
-                    ConnectDataSet: NexusGlobalConnection,
-                },
-                {
-                    Molecule: NotificationToastMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON],
-                    ConnectDataSet: NexusNotificationsConnection,
-                },
-                {
-                    Molecule: BatteryIndicatorMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON],
-                    ConnectDataSet: NexusGlobalConnection,
-                },
-                {
-                    Molecule: ControlCenterOrganism,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON],
-                    ConnectDataSet: NexusGlobalConnection,
-                },
-                {
-                    Molecule: WeatherWidgetMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON],
-                    ConnectDataSet: NexusWeatherConnection,
-                },
-                {
-                    Molecule: ContextMenuMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON]
-                },
-                {
-                    Molecule: ToggleSwitchMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON],
-                    ConnectDataSet: NexusGlobalConnection,
-                },
-                {
-                    Molecule: QuickActionTileMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON],
-                    ConnectDataSet: NexusGlobalConnection,
-                },
-                {
-                    Molecule: SliderControlMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON],
-                    ConnectDataSet: NexusGlobalConnection,
-                },
-                {
-                    Molecule: SettingsPanelMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON, NexusConfig.TranslationUrl.SETTINGS],
-                    ConnectDataSet: NexusGlobalConnection,
-                },
-                {
-                    Molecule: FormFieldMolecule,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON, NexusConfig.TranslationUrl.SETTINGS],
-                    ConnectDataSet: NexusGlobalConnection,
-                },
-            ],
-            Components: [
-                {
-                    Component: NxIconComponent,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON]
-                },
-                {
-                    Component: NxTypographyComponent,
-                    I18nPath: [NexusConfig.TranslationUrl.COMMON]
-                },
-            ],
-        } as IAsorRoute,
-    },
+	{
+		path: '',
+		redirectTo: NexusConfig.Route.BOOT,
+		pathMatch: 'full',
+	},
+	{
+		path: NexusConfig.Route.BOOT,
+		component: PageBootComponent,
+		data: {
+			I18nPath: [NexusConfig.TranslationUrl.BOOT],
+			Molecules: [
+				{
+					Molecule: SystemLogLineMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.BOOT],
+				},
+			],
+			Components: [
+				{
+					Component: NxTypographyComponent,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+			],
+		} as IAsorRoute,
+	},
+	{
+		path: NexusConfig.Route.LOGIN,
+		component: PageLoginComponent,
+		data: {
+			I18nPath: [NexusConfig.TranslationUrl.LOGIN, NexusConfig.TranslationUrl.COMMON],
+			ConnectDataSet: NexusStateConnectionLogin,
+			Molecules: [
+				{
+					Molecule: ClockWidgetMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.LOGIN],
+				},
+			],
+			Components: [
+				{
+					Component: NxTypographyComponent,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+				{
+					Component: NxButtonComponent,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+			],
+		} as IAsorRoute,
+	},
+	{
+		path: NexusConfig.Route.DESKTOP,
+		component: PageDesktopComponent,
+		canActivate: [AuthGuard],
+		data: {
+			I18nPath: [NexusConfig.TranslationUrl.DESKTOP, NexusConfig.TranslationUrl.COMMON],
+			ConnectDataSet: NexusStateConnectionDesktop,
+			AuthCheck: NexusConfig.AuthCheck.DESKTOP,
+			Molecules: [
+				{
+					Molecule: ClockWidgetMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.DESKTOP],
+				},
+				{ Molecule: NxDockItemMolecule, I18nPath: [NexusConfig.TranslationUrl.DESKTOP] },
+				{
+					Molecule: NxSearchBarMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+				{
+					Molecule: NxStatCardMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+				{
+					Molecule: NxWindowHeaderMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+				{
+					Molecule: UserProfileBadgeMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+					ConnectDataSet: NexusStateConnectionGlobal,
+				},
+				{
+					Molecule: NotificationToastMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+					ConnectDataSet: NexusStateConnectionNotifications,
+				},
+				{
+					Molecule: BatteryIndicatorMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+					ConnectDataSet: NexusStateConnectionGlobal,
+				},
+				{
+					Molecule: ControlCenterOrganism,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+					ConnectDataSet: NexusStateConnectionGlobal,
+				},
+				{
+					Molecule: WeatherWidgetMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+					ConnectDataSet: NexusStateConnectionWeather,
+				},
+				{
+					Molecule: ContextMenuMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+				{
+					Molecule: ToggleSwitchMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+				{
+					Molecule: QuickActionTileMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+				{
+					Molecule: SliderControlMolecule,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+					ConnectDataSet: NexusStateConnectionGlobal,
+				},
+				{
+					Molecule: SettingsPanelMolecule,
+					I18nPath: [
+						NexusConfig.TranslationUrl.COMMON,
+						NexusConfig.TranslationUrl.SETTINGS,
+					],
+					ConnectDataSet: NexusStateConnectionGlobal,
+				},
+				{
+					Molecule: FormFieldMolecule,
+					I18nPath: [
+						NexusConfig.TranslationUrl.COMMON,
+						NexusConfig.TranslationUrl.SETTINGS,
+					],
+				},
+			],
+			Components: [
+				{
+					Component: NxIconComponent,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+				{
+					Component: NxTypographyComponent,
+					I18nPath: [NexusConfig.TranslationUrl.COMMON],
+				},
+			],
+		} as IAsorRoute,
+	},
 ];

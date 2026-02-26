@@ -82,7 +82,11 @@
 			margin: 0;
 			text-transform: uppercase;
 			opacity: 0.8;
-			background: linear-gradient(to bottom, $font-primary-color, rgba(var(--nexus-border-rgb), 0.5));
+			background: linear-gradient(
+				to bottom,
+				$font-primary-color,
+				rgba(var(--nexus-border-rgb), 0.5)
+			);
 			-webkit-background-clip: text;
 			background-clip: text;
 			-webkit-text-fill-color: transparent;
@@ -142,7 +146,6 @@
 }
 
 @keyframes boot-pulse {
-
 	0%,
 	100% {
 		transform: scale(1);
@@ -205,7 +208,6 @@
 }
 
 @keyframes blink {
-
 	0%,
 	100% {
 		opacity: 0.4;

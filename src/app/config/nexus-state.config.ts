@@ -6,7 +6,7 @@ import {
 	INexusSystemStatus,
 } from './interfaces/nexus-state.interfaces';
 
-export const SystemStateCreateDataSet: ICreateDataSet = {
+export const NexusStateCreateSystemDataSet: ICreateDataSet = {
 	name: 'nexus-system-state',
 	data: {
 		volume: 75,
@@ -25,7 +25,7 @@ export const SystemStateCreateDataSet: ICreateDataSet = {
 	},
 };
 
-export const AuthCreateDataSet: ICreateDataSet = {
+export const NexusStateCreateAuthDataSet: ICreateDataSet = {
 	name: 'nexus-auth',
 	data: {
 		users: [],
@@ -37,7 +37,7 @@ export const AuthCreateDataSet: ICreateDataSet = {
 	},
 };
 
-export const SystemStatusCreateDataSet: ICreateDataSet = {
+export const NexusStateCreateSystemStatusDataSet: ICreateDataSet = {
 	name: 'nexus-system-status',
 	data: {
 		// Metrics
@@ -71,7 +71,7 @@ export const SystemStatusCreateDataSet: ICreateDataSet = {
 	},
 };
 
-export const DesktopConnectDataSet: IConnectDataSet = {
+export const NexusStateConnectionDesktop: IConnectDataSet = {
 	name: 'DesktopConnection',
 	selectors: {
 		openApps: 'nexus-system-status.openApps',
@@ -86,7 +86,7 @@ export const DesktopConnectDataSet: IConnectDataSet = {
 	},
 };
 
-export const NexusGlobalConnection: IConnectDataSet = {
+export const NexusStateConnectionGlobal: IConnectDataSet = {
 	name: 'NexusGlobalConnection',
 	selectors: {
 		volume: 'nexus-system-state.volume',
@@ -105,18 +105,7 @@ export const NexusGlobalConnection: IConnectDataSet = {
 	},
 };
 
-export const NexusSystemMetricsConnection: IConnectDataSet = {
-	name: 'NexusSystemMetricsConnection',
-	selectors: {
-		cpu: 'nexus-system-status.cpu',
-		ram: 'nexus-system-status.ram',
-		network: 'nexus-system-status.network',
-		battery: 'nexus-system-status.battery',
-		isCharging: 'nexus-system-status.isCharging',
-	},
-};
-
-export const NexusWeatherConnection: IConnectDataSet = {
+export const NexusStateConnectionWeather: IConnectDataSet = {
 	name: 'NexusWeatherConnection',
 	selectors: {
 		temperature: 'nexus-system-status.temperature',
@@ -125,14 +114,14 @@ export const NexusWeatherConnection: IConnectDataSet = {
 	},
 };
 
-export const NexusNotificationsConnection: IConnectDataSet = {
+export const NexusStateConnectionNotifications: IConnectDataSet = {
 	name: 'NexusNotificationsConnection',
 	selectors: {
 		notifications: 'nexus-system-status.notifications',
 	},
 };
 
-export const LoginConnectDataSet: IConnectDataSet = {
+export const NexusStateConnectionLogin: IConnectDataSet = {
 	name: 'LoginConnectDataSet',
 	selectors: {
 		users: 'nexus-auth.users',
@@ -140,7 +129,7 @@ export const LoginConnectDataSet: IConnectDataSet = {
 	},
 };
 
-export const NexusStateAppConnection: IConnectDataSet = {
+export const NexusStateConnectionApp: IConnectDataSet = {
 	name: 'NexusStateAppConnection',
 	selectors: {
 		theme: 'nexus-system-state.theme',

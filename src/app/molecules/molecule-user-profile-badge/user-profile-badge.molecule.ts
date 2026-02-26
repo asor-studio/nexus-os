@@ -18,7 +18,8 @@ export class UserProfileBadgeMolecule extends BaseStorageMolecule<INexusGlobalPr
 		super();
 	}
 
-	override storageHandlerDataChanges(prev: INexusGlobalProps, curr: INexusGlobalProps): void { }
+	override storageHandlerDataChanges(prev: INexusGlobalProps, curr: INexusGlobalProps): void {}
+
 	override baseCompViewEnter(): void {
 		super.baseCompViewEnter();
 	}

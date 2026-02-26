@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseStorageMolecule } from '@asor-studio/asor-core';
 import { LucideAngularModule } from 'lucide-angular';
-import { INexusSystemStatus } from '../../config/interfaces/nexus-state.interfaces';
+import { INexusWeather } from '../../config/interfaces/nexus-state.interfaces';
 
 @Component({
 	selector: 'nx-weather-widget',
@@ -11,7 +11,7 @@ import { INexusSystemStatus } from '../../config/interfaces/nexus-state.interfac
 	templateUrl: './weather-widget.molecule.html',
 	styleUrl: './weather-widget.molecule.scss',
 })
-export class WeatherWidgetMolecule extends BaseStorageMolecule<INexusSystemStatus> {
+export class WeatherWidgetMolecule extends BaseStorageMolecule<INexusWeather> {
 	public static override readonly className: string = 'WeatherWidgetMolecule';
 
 	public get weatherIcon(): string {

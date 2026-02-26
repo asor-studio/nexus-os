@@ -7,20 +7,22 @@ This project is a web-based application that emulates the functionalities and us
 Follow these steps to download and install the project locally:
 
 1. **Clone the repository:**
-   ```bash
-   git clone <REPOSITORY_URL>
-   cd nexus-os
-   ```
+
+    ```bash
+    git clone <REPOSITORY_URL>
+    cd nexus-os
+    ```
 
 2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+
+    ```bash
+    npm install
+    ```
 
 3. **Start the development server:**
-   ```bash
-   npm start
-   ```
+    ```bash
+    npm start
+    ```
 
 The application will be available at `http://localhost:4200/`.
 

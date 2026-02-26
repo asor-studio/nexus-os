@@ -8,6 +8,7 @@
 	"bracketSpacing": true,
 	"arrowParens": "always",
 	"plugins": ["prettier-plugin-organize-attributes"],
+	"endOfLine": "crlf",
 	"overrides": [
 		{
 			"files": "*.html",

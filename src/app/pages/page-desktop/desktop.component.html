@@ -1,65 +1,96 @@
 <div class="desktop-container" (contextmenu)="showContextMenu($event)" (click)="closeContextMenu()">
-    <div class="desktop-wallpaper"></div>
+	<div class="desktop-wallpaper"></div>
 
-    <!-- Unified System Taskbar -->
-    <nx-taskbar #ChildRef [activeAppTitle]="
+	<!-- Unified System Taskbar -->
+	<nx-taskbar
+		#ChildRef
+		[activeAppTitle]="
 			props.openApps.length > 0 ? props.openApps[props.openApps.length - 1].appId : ''
-		" (controlCenterToggle)="toggleSettings()"></nx-taskbar>
+		"
+		(controlCenterToggle)="toggleSettings()"
+	></nx-taskbar>
 
-    <!-- Notification Stack -->
-    <div class="notification-stack">
-        @for (notif of props.notifications; track notif.id) {
-        <nx-notification-toast #ChildRef [notification]="notif"
-            (close)="removeNotification($event)"></nx-notification-toast>
-        }
-    </div>
+	<!-- Notification Stack -->
+	<div class="notification-stack">
+		@for (notif of props.notifications; track notif.id) {
+			<nx-notification-toast
+				#ChildRef
+				[notification]="notif"
+				(close)="removeNotification($event)"
+			></nx-notification-toast>
+		}
+	</div>
 
-    <!-- Unified Control Center -->
-    <nx-control-center #ChildRef [isOpen]="props.isSettingsOpen" (close)="toggleSettings()"></nx-control-center>
+	<!-- Unified Control Center -->
+	<nx-control-center
+		#ChildRef
+		[isOpen]="props.isSettingsOpen"
+		(close)="toggleSettings()"
+	></nx-control-center>
 
-    <!-- Workspace / Windows -->
-    <div class="workspace">
-        @for (app of props.openApps; track app.id) {
-        <nx-window-frame #ChildRef [title]="app.appId | uppercase"
-            [isActive]="app.id === props.openApps[props.openApps.length - 1].id" [zIndex]="app.zIndex"
-            [isMinimized]="app.isMinimized" (close)="closeApp(app.id)" (focus)="focusApp(app.id)"
-            (minimize)="minimizeApp(app.id)" (maximize)="maximizeApp(app.id)">
-            <div class="window-content-inner">
-                @switch (app.appId) {
-                @case ('settings') {
-                <nx-settings-panel #ChildRef></nx-settings-panel>
-                }
-                @case ('explorer') {
-                <div class="placeholder-content">
-                    <nx-icon [size]="48" name="Folder"></nx-icon>
-                    <p>Explorer is coming soon...</p>
-                </div>
-                }
-                @case ('terminal') {
-                <div class="placeholder-content">
-                    <nx-icon [size]="48" name="Terminal"></nx-icon>
-                    <p>Terminal is coming soon...</p>
-                </div>
-                }
-                @default {
-                <p>Running {{ app.appId }} application instance...</p>
-                }
-                }
-            </div>
-        </nx-window-frame>
-        }
-    </div>
+	<!-- Workspace / Windows -->
+	<div class="workspace">
+		@for (app of props.openApps; track app.id) {
+			<nx-window-frame
+				#ChildRef
+				[title]="app.appId | uppercase"
+				[isActive]="app.id === props.openApps[props.openApps.length - 1].id"
+				[zIndex]="app.zIndex"
+				[isMinimized]="app.isMinimized"
+				(close)="closeApp(app.id)"
+				(focus)="focusApp(app.id)"
+				(minimize)="minimizeApp(app.id)"
+				(maximize)="maximizeApp(app.id)"
+			>
+				<div class="window-content-inner">
+					@switch (app.appId) {
+						@case ('settings') {
+							<nx-settings-panel #ChildRef></nx-settings-panel>
+						}
+						@case ('explorer') {
+							<div class="placeholder-content">
+								<nx-icon [size]="48" name="Folder"></nx-icon>
+								<p>Explorer is coming soon...</p>
+							</div>
+						}
+						@case ('terminal') {
+							<div class="placeholder-content">
+								<nx-icon [size]="48" name="Terminal"></nx-icon>
+								<p>Terminal is coming soon...</p>
+							</div>
+						}
+						@default {
+							<p>Running {{ app.appId }} application instance...</p>
+						}
+					}
+				</div>
+			</nx-window-frame>
+		}
+	</div>
 
-    <!-- Dash / Dock -->
-    <div class="gnome-dash-container" [class.has-open-apps]="props.openApps.length > 0">
-        <div class="gnome-dash">
-            @for (item of dockItems; track item.id) {
-            <nx-dock-item #ChildRef [appId]="item.id" [iconName]="item.iconName" [label]="item.label | translate"
-                [color]="item.color" [isOpen]="isAppOpen(item.id)" (appLaunch)="onLaunchApp($event)" />
-            }
-        </div>
-    </div>
+	<!-- Dash / Dock -->
+	<div class="gnome-dash-container" [class.has-open-apps]="props.openApps.length > 0">
+		<div class="gnome-dash">
+			@for (item of dockItems; track item.id) {
+				<nx-dock-item
+					#ChildRef
+					[appId]="item.id"
+					[iconName]="item.iconName"
+					[label]="item.label | translate"
+					[color]="item.color"
+					[isOpen]="isAppOpen(item.id)"
+					(appLaunch)="onLaunchApp($event)"
+				/>
+			}
+		</div>
+	</div>
 
-    <nx-context-menu #ChildRef *ngIf="props.contextMenu.visible" [x]="props.contextMenu.x" [y]="props.contextMenu.y"
-        [items]="props.contextMenu.items" (close)="closeContextMenu()"></nx-context-menu>
+	<nx-context-menu
+		#ChildRef
+		*ngIf="props.contextMenu.visible"
+		[x]="props.contextMenu.x"
+		[y]="props.contextMenu.y"
+		[items]="props.contextMenu.items"
+		(close)="closeContextMenu()"
+	></nx-context-menu>
 </div>

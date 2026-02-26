@@ -1,8 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BaseMolecule, TranslatePipe } from '@asor-studio/asor-core';
+import { BaseMolecule, BaseStorageMolecule, TranslatePipe } from '@asor-studio/asor-core';
 import { LucideAngularModule } from 'lucide-angular';
-import { INexusNotification } from '../../config/interfaces/nexus-state.interfaces';
+import {
+	INexusNotification,
+	INexusNotifications,
+} from '../../config/interfaces/nexus-state.interfaces';
 
 @Component({
 	selector: 'nx-notification-toast',
@@ -11,7 +14,7 @@ import { INexusNotification } from '../../config/interfaces/nexus-state.interfac
 	templateUrl: './notification-toast.molecule.html',
 	styleUrl: './notification-toast.molecule.scss',
 })
-export class NotificationToastMolecule extends BaseMolecule {
+export class NotificationToastMolecule extends BaseStorageMolecule<INexusNotifications> {
 	public static override readonly className: string = 'NotificationToastMolecule';
 
 	@Input() public notification?: INexusNotification;

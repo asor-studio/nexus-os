@@ -3,7 +3,13 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LUCIDE_ICONS, LucideIconProvider } from 'lucide-angular';
 import { NexusIcons } from './config/nexus-icons.config';
-import { StateService, CacheInterceptor, ErrorInterceptor, MockHttpInterceptor, MockOrchestratorService } from '@asor-studio/asor-core';
+import {
+	StateService,
+	CacheInterceptor,
+	ErrorInterceptor,
+	MockHttpInterceptor,
+	MockOrchestratorService,
+} from '@asor-studio/asor-core';
 import { routes } from './app.routes';
 import { initializeAsorCoreApp } from './config/nexus-asor.config';
 import { APP_BASE_HREF } from '@angular/common';

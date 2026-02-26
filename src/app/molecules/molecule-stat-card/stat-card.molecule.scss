@@ -56,10 +56,12 @@
 				right: 0;
 				bottom: 0;
 				left: 0;
-				background: linear-gradient(90deg,
-						transparent,
-						rgba(var(--nexus-border-rgb), 0.2),
-						transparent);
+				background: linear-gradient(
+					90deg,
+					transparent,
+					rgba(var(--nexus-border-rgb), 0.2),
+					transparent
+				);
 				animation: shimmer 2s infinite linear;
 			}
 		}

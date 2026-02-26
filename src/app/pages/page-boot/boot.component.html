@@ -1,28 +1,28 @@
 <div class="boot-container">
 	@if (!isBootStarted) {
-	<div class="go-section">
-		<button class="go-button" (click)="startBoot()">
-			<span class="go-text">go...</span>
-		</button>
-	</div>
+		<div class="go-section">
+			<button class="go-button" (click)="startBoot()">
+				<span class="go-text">go...</span>
+			</button>
+		</div>
 	} @else {
-	<div class="holographic-logo">
-		<div class="logo-wrapper">
-			<span class="logo-symbol">NX</span>
-			<div class="scan-line"></div>
+		<div class="holographic-logo">
+			<div class="logo-wrapper">
+				<span class="logo-symbol">NX</span>
+				<div class="scan-line"></div>
+			</div>
+			<div class="system-title">
+				<h1>Nexus OS</h1>
+				<div class="version-tag">ASOR CORE v1.0.11</div>
+			</div>
 		</div>
-		<div class="system-title">
-			<h1>Nexus OS</h1>
-			<div class="version-tag">ASOR CORE v1.0.11</div>
-		</div>
-	</div>
 
-	<div class="boot-status">
-		<div class="logs-container">
-			@for (log of logs; track log.timestamp) {
-			<nx-system-log-line [entry]="log" />
-			}
+		<div class="boot-status">
+			<div class="logs-container">
+				@for (log of logs; track log.timestamp) {
+					<nx-system-log-line [entry]="log" />
+				}
+			</div>
 		</div>
-	</div>
 	}
 </div>

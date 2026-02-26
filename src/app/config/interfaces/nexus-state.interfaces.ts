@@ -24,6 +24,13 @@ export interface INexusSettingsProps {
 	isAnonymous: boolean;
 }
 
+export interface INexusWeather {
+	// Weather
+	temperature: number;
+	condition: string;
+	city: string;
+}
+
 export interface INexusSystemStatus {
 	// Metrics
 	cpu: number;
@@ -31,11 +38,6 @@ export interface INexusSystemStatus {
 	network: number;
 	battery: number;
 	isCharging: boolean;
-
-	// Weather
-	temperature: number;
-	condition: string;
-	city: string;
 
 	// Notifications
 	notifications: INexusNotification[];
@@ -61,6 +63,9 @@ export interface INexusGlobalProps extends INexusSettingsProps, INexusSystemStat
 
 // Redundant interfaces removed, consolidated into INexusSystemStatus
 
+export interface INexusNotifications {
+	notifications: INexusNotification[];
+}
 
 export interface INexusNotification {
 	id: string;
@@ -69,12 +74,6 @@ export interface INexusNotification {
 	timestamp: Date;
 	type: 'info' | 'success' | 'warning' | 'error' | 'warn';
 	read: boolean;
-}
-
-
-export interface INexusWindowManagerProps {
-	windows: any[];
-	highestZIndex: number;
 }
 
 export interface IAppInstance {

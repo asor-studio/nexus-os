@@ -36,10 +36,7 @@ export class SettingsPanelMolecule extends BaseStorageMolecule<INexusGlobalProps
 		this.activeSection = sectionId;
 	}
 
-	override storageHandlerDataChanges(
-		prev: INexusGlobalProps,
-		curr: INexusGlobalProps
-	): void { }
+	override storageHandlerDataChanges(prev: INexusGlobalProps, curr: INexusGlobalProps): void {}
 
 	override baseCompViewEnter(): void {
 		super.baseCompViewEnter();

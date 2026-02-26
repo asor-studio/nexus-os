@@ -19,5 +19,4 @@ export class SystemLogLineMolecule extends BaseMolecule {
 	public static override readonly className: string = 'SystemLogLineMolecule';
 
 	@Input({ required: true }) entry!: ILogEntry;
-
 }

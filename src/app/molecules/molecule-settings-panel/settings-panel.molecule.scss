@@ -222,7 +222,7 @@
 		flex-direction: column;
 		gap: 0.5rem;
 
-		&+.win-setting-row {
+		& + .win-setting-row {
 			border-top: 1px solid rgba(var(--nexus-border-rgb), 0.04);
 		}
 
@@ -234,7 +234,6 @@
 
 		// Adjust inner molecules for better alignment
 		::ng-deep {
-
 			.toggle-row,
 			.slider-row {
 				padding: 0 !important;
